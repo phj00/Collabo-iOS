@@ -6,7 +6,7 @@ struct NewPost: View {
     @Binding var updateId : String
     var body: some View {
         
-        VStack{
+        VStack(alignment: .leading){
             
             HStack(spacing: 15){
                 
@@ -25,7 +25,7 @@ struct NewPost: View {
                 
                 if updateId == ""{
                     
-                    // Only FOr New Posts....
+                    // Only FOr New Projects....
                     Button(action: {newPostData.picker.toggle()}) {
                         
                         Image(systemName: "photo.fill")
@@ -51,12 +51,31 @@ struct NewPost: View {
             .opacity(newPostData.isPosting ? 0.5 : 1)
             .disabled(newPostData.isPosting ? true : false)
             
+            Text("     Category:")
+                .font(.caption)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+            
+            TextEditor(text: $newPostData.postCategory)
+                .cornerRadius(15)
+                //.background(Color(.clear))
+                .padding()
+                .opacity(newPostData.isPosting ? 0.5 : 1)
+                .disabled(newPostData.isPosting ? true : false)
+            
+            Text("     Project Description:")
+                .font(.caption)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+            
             TextEditor(text: $newPostData.postTxt)
                 .cornerRadius(15)
                 //.background(Color(.clear))
                 .padding()
                 .opacity(newPostData.isPosting ? 0.5 : 1)
                 .disabled(newPostData.isPosting ? true : false)
+            
+            
             
             // Dispalying Image if its selected...
             

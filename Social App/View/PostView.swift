@@ -9,7 +9,7 @@ struct PostView: View {
             
             HStack{
                 
-                Text("Posts")
+                Text("Projects")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
@@ -29,13 +29,13 @@ struct PostView: View {
             .background(Color("bg"))
             .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
             
-            if postData.posts.isEmpty{
+            if postData.Projects.isEmpty{
                 
                 Spacer(minLength: 0)
                 
-                if postData.noPosts{
+                if postData.noProjects{
                     
-                    Text("No Posts to View")
+                    Text("No Projects to View")
                 }
                 else{
                     
@@ -50,7 +50,7 @@ struct PostView: View {
                     
                     VStack(spacing: 15){
                         
-                        ForEach(postData.posts){post in
+                        ForEach(postData.Projects){post in
                             
                             PostRow(post: post,postData: postData)
                         }

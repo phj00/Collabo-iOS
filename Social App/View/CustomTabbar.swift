@@ -6,7 +6,7 @@ struct CustomTabbar: View {
         
         HStack(spacing: 65){
             
-            TabButton(title: "Posts", selectedTab: $selectedTab)
+            TabButton(title: "Projects", selectedTab: $selectedTab)
             
             TabButton(title: "Settings", selectedTab: $selectedTab)
         }

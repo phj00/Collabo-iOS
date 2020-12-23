@@ -4,6 +4,7 @@ struct PostModel : Identifiable {
     
     var id: String
     var title : String
+    var category: String
     var pic: String
     var time : Date
     var user: UserModel

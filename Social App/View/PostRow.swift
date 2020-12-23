@@ -81,6 +81,21 @@ struct PostRow: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
             }
+            
+            .padding(.top,5)
+            
+            HStack{
+                
+                Spacer(minLength: 0)
+                
+                Text(post.category)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+            
+            .padding(.top,5)
+            
         }
         .padding()
         .background(Color.white.opacity(0.06))

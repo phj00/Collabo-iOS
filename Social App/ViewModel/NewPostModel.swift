@@ -4,6 +4,7 @@ import Firebase
 class NewPostModel : ObservableObject{
     
     @Published var postTxt = ""
+    @Published var postCategory = ""
     // Image Picker...
     @Published var picker = false
     @Published var img_Data = Data(count: 0)
@@ -23,9 +24,10 @@ class NewPostModel : ObservableObject{
             
             // Updating Data...
             
-            ref.collection("Posts").document(updateId).updateData([
+            ref.collection("Projects").document(updateId).updateData([
             
-                "title": postTxt
+                "title": postTxt,
+                "category": postCategory
             ]) { (err) in
                 
                 self.isPosting = false
@@ -39,9 +41,10 @@ class NewPostModel : ObservableObject{
         
         if img_Data.count == 0{
             
-            ref.collection("Posts").document().setData([
+            ref.collection("Projects").document().setData([
             
                 "title": self.postTxt,
+                "category": self.postCategory,
                 "url": "",
                 "ref": ref.collection("Users").document(self.uid),
                 "time": Date()
@@ -62,9 +65,10 @@ class NewPostModel : ObservableObject{
             
             UploadImage(imageData: img_Data, path: "post_Pics") { (url) in
                 
-                ref.collection("Posts").document().setData([
+                ref.collection("Projects").document().setData([
                 
                     "title": self.postTxt,
+                    "category": self.postCategory,
                     "url": url,
                     "ref": ref.collection("Users").document(self.uid),
                     "time": Date()

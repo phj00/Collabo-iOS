@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Home: View {
     
-    @State var selectedTab = "Posts"
+    @State var selectedTab = "Projects"
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     
     var body: some View {
@@ -13,7 +13,7 @@ struct Home: View {
             ZStack{
                 
                 PostView()
-                    .opacity(selectedTab == "Posts" ? 1 : 0)
+                    .opacity(selectedTab == "Projects" ? 1 : 0)
                 
                 SettingsView()
                     .opacity(selectedTab == "Settings" ? 1 : 0)
