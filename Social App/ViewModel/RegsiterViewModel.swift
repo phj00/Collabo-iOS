@@ -6,6 +6,7 @@ class RegisterViewModel : ObservableObject{
     @Published var name = ""
     @Published var bio = ""
     @Published var school = ""
+    @Published var savedPosts = [String]()
     
     @Published var image_Data = Data(count: 0)
     @Published var picker = false
@@ -30,7 +31,8 @@ class RegisterViewModel : ObservableObject{
                 "username": self.name,
                 "school": self.school,
                 "bio": self.bio,
-                "dateCreated": Date()
+                "dateCreated": Date(),
+                "savedPosts": self.savedPosts
                 
             ]) { (err) in
              

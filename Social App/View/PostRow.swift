@@ -74,26 +74,33 @@ struct PostRow: View {
             
             HStack{
                 
-                Spacer(minLength: 0)
+                Button(action: {postData.savePost(id: post.id)}) {
+        
+                    Image(systemName: "square.and.arrow.down")
+                        .font(.title)
+                        .foregroundColor(.white)
+                }
                 
-                Text(post.time,style: .time)
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                Spacer(minLength: 100)
+                
+                VStack(alignment: .trailing){
+                    
+                    Text(post.time,style: .time)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    
+                    Spacer(minLength: 0)
+                    
+                    Text(post.category)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    
+                    
+                }
+                
             }
-            
-            .padding(.top,5)
-            
-            HStack{
-                
-                Spacer(minLength: 0)
-                
-                Text(post.category)
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-            }
-            
             .padding(.top,5)
             
         }
@@ -101,5 +108,6 @@ struct PostRow: View {
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
     }
+    
 }
 

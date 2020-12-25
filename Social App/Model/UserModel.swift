@@ -6,4 +6,5 @@ struct UserModel {
     var pic : String
     var bio: String
     var uid : String
+    var savedPosts : Array<String>
 }

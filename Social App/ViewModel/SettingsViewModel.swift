@@ -3,7 +3,7 @@ import Firebase
 
 class SettingsViewModel : ObservableObject{
     
-    @Published var userInfo = UserModel(username: "", school: "", pic: "", bio: "", uid: "")
+    @Published var userInfo = UserModel(username: "", school: "", pic: "", bio: "", uid: "", savedPosts: [String]())
     @AppStorage("current_status") var status = false
     
     // Image Picker For Updating Image...
@@ -22,7 +22,6 @@ class SettingsViewModel : ObservableObject{
             self.userInfo = user
         }
     }
-    
     
     func logOut(){
         
@@ -80,4 +79,5 @@ class SettingsViewModel : ObservableObject{
             }
         }
     }
+    
 }

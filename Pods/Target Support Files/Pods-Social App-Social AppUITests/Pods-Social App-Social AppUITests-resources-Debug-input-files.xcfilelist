@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-Social App-Social AppUITests/Pods-Social App-Social AppUITests-resources.sh
-${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle

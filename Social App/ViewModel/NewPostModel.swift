@@ -57,6 +57,8 @@ class NewPostModel : ObservableObject{
                 }
                 
                 self.isPosting = false
+                
+                
                 // closing View When Succssfuly Posted...
                 present.wrappedValue.dismiss()
             }

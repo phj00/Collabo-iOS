@@ -8,7 +8,6 @@ class PostViewModel : ObservableObject{
     @Published var newPost = false
     @Published var updateId = ""
     
-    
     init() {
         
         getAllProjects()
@@ -112,5 +111,33 @@ class PostViewModel : ObservableObject{
         updateId = id
         // Poping New Post Screen
         newPost.toggle()
+    }
+    
+    // 12.04. Save Post
+    
+    func savePost(id: String){
+        
+        let uid = Auth.auth().currentUser!.uid
+        var group_array = [String]()
+        
+        // Retriving saved posts
+        
+        Firestore.firestore().collection("Users").document(uid).getDocument {
+            (document, error) in
+            if let document = document {
+                group_array = document["savedPosts"] as? Array ?? [""]
+                print(group_array)
+            }
+        }
+        
+        let temp = ref.collection("Users").document(uid)
+
+        // Atomically add a new region to the "regions" array field.
+        temp.updateData([
+            "savedPosts": FieldValue.arrayUnion([id])
+        ])
+        
+        
+        
     }
 }

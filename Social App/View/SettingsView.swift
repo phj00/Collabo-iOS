@@ -8,11 +8,8 @@ struct SettingsView: View {
     var body: some View {
         
         ScrollView{
-            
             VStack{
-                
                 HStack{
-                    
                     Text("Settings")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
@@ -71,7 +68,6 @@ struct SettingsView: View {
                     
                     Text("School: " + settingsData.userInfo.school)
                         .foregroundColor(.white)
-                        .italic()
                     
                     // Edit Button...
                     
@@ -90,6 +86,7 @@ struct SettingsView: View {
                     
                     Text(settingsData.userInfo.bio)
                         .foregroundColor(.white)
+                        .italic()
                     
                     // Edit Button...
                     
@@ -100,6 +97,8 @@ struct SettingsView: View {
                             .foregroundColor(.white)
                     }
                 }
+                .padding(.horizontal)
+                .padding(.bottom)
                 
                 // LogOut Button...
                 
@@ -131,8 +130,6 @@ struct SettingsView: View {
                     .padding()
                     .padding(.top,edges!.top)
                     // Top Shadow Effect...
-                    .background(Color("bg"))
-                    .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
                     
                     if postData.Projects.isEmpty{
                         
@@ -141,6 +138,7 @@ struct SettingsView: View {
                         if postData.noProjects{
                             
                             Text("No Projects to View")
+                                .padding(60)
                         }
                         else{
                             
