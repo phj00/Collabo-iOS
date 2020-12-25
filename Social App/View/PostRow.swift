@@ -2,6 +2,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
+let savedStatus = false
+
 struct PostRow: View {
     
     var post : PostModel
@@ -74,11 +76,19 @@ struct PostRow: View {
             
             HStack{
                 
-                Button(action: {postData.savePost(id: post.id)}) {
-        
-                    Image(systemName: "square.and.arrow.down")
-                        .font(.title)
-                        .foregroundColor(.white)
+                // 12.25 Programmable button feature
+                
+                Button(action: { if postData.savedStatus == false {postData.savePost(id: post.id)} else {postData.unsavePost(id: post.id)}}) {
+                    if postData.savedStatus == false {
+                        Image(systemName: "square.and.arrow.down")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    } else {
+                        Image(systemName: "square.and.arrow.down.fill")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    }
+                
                 }
                 
                 Spacer(minLength: 100)
