@@ -2,8 +2,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-let savedStatus = false
-
 struct PostRow: View {
     
     var post : PostModel
@@ -78,17 +76,18 @@ struct PostRow: View {
                 
                 // 12.25 Programmable button feature
                 
-                Button(action: { if postData.savedStatus == false {postData.savePost(id: post.id)} else {postData.unsavePost(id: post.id)}}) {
-                    if postData.savedStatus == false {
+                // && post.id == 
+                
+                Button(action: { if postData.savedContains(id: post.id) == false {postData.savePost(id: post.id)} else if postData.savedContains(id: post.id) == true {postData.unsavePost(id: post.id)}}) {
+                    if postData.savedContains(id: post.id) == false {
                         Image(systemName: "square.and.arrow.down")
                             .font(.title)
                             .foregroundColor(.white)
-                    } else {
+                    } else if postData.savedContains(id: post.id) == true {
                         Image(systemName: "square.and.arrow.down.fill")
                             .font(.title)
                             .foregroundColor(.white)
                     }
-                
                 }
                 
                 Spacer(minLength: 100)
@@ -106,7 +105,6 @@ struct PostRow: View {
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                    
                     
                 }
                 

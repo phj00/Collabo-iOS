@@ -8,6 +8,7 @@ class PostViewModel : ObservableObject{
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
+    @Published var group_array = [String]()
     
     init() {
         
@@ -119,18 +120,6 @@ class PostViewModel : ObservableObject{
     func savePost(id: String){
         
         let uid = Auth.auth().currentUser!.uid
-        var group_array = [String]()
-        
-        // Retriving saved posts
-        
-        Firestore.firestore().collection("Users").document(uid).getDocument {
-            (document, error) in
-            if let document = document {
-                group_array = document["savedPosts"] as? Array ?? [""]
-                print(group_array)
-            }
-        }
-        
         let temp = ref.collection("Users").document(uid)
 
         // Atomically add a new region to the "regions" array field.
@@ -147,26 +136,33 @@ class PostViewModel : ObservableObject{
     func unsavePost(id: String){
         
         let uid = Auth.auth().currentUser!.uid
-        var group_array = [String]()
-        
-        // Retriving saved posts
-        
-        Firestore.firestore().collection("Users").document(uid).getDocument {
-            (document, error) in
-            if let document = document {
-                group_array = document["savedPosts"] as? Array ?? [""]
-                print(group_array)
-            }
-        }
-        
         let temp = ref.collection("Users").document(uid)
 
-        // Atomically add a new region to the "regions" array field.
         temp.updateData([
             "savedPosts": FieldValue.arrayRemove([id])
         ])
         
         savedStatus = !savedStatus
+        
+    }
+    
+    func savedContains(id: String) -> Bool {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("Users").document(uid).getDocument {
+            (document, error) in
+            if let document = document {
+                self.group_array = document["savedPosts"] as? Array ?? [""]
+                print(self.group_array)
+            }
+        }
+        
+        if group_array.contains(id) {
+            return true
+        } else {
+            return false
+        }
         
     }
 }
