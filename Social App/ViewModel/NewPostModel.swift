@@ -42,12 +42,13 @@ class NewPostModel : ObservableObject{
         if img_Data.count == 0{
             
             ref.collection("Projects").document().setData([
-            
+                
                 "title": self.postTxt,
                 "category": self.postCategory,
                 "url": "",
                 "ref": ref.collection("Users").document(self.uid),
-                "time": Date()
+                "time": Date(),
+                "userString": uid
                 
             ]) { (err) in
                 
@@ -62,18 +63,20 @@ class NewPostModel : ObservableObject{
                 // closing View When Succssfuly Posted...
                 present.wrappedValue.dismiss()
             }
+            
         }
         else{
             
             UploadImage(imageData: img_Data, path: "post_Pics") { (url) in
                 
                 ref.collection("Projects").document().setData([
-                
+                    
                     "title": self.postTxt,
                     "category": self.postCategory,
                     "url": url,
                     "ref": ref.collection("Users").document(self.uid),
-                    "time": Date()
+                    "time": Date(),
+                    "userString": self.uid
                     
                 ]) { (err) in
                     

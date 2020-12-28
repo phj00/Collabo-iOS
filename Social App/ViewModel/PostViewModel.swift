@@ -42,12 +42,13 @@ class PostViewModel : ObservableObject{
                     let time = doc.document.data()["time"] as! Timestamp
                     let pic = doc.document.data()["url"] as! String
                     let userRef = doc.document.data()["ref"] as! DocumentReference
+                    let userString = doc.document.data()["userString"] as! String
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user))
+                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString))
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
@@ -154,7 +155,6 @@ class PostViewModel : ObservableObject{
             (document, error) in
             if let document = document {
                 self.group_array = document["savedPosts"] as? Array ?? [""]
-                print(self.group_array)
             }
         }
         

@@ -8,4 +8,5 @@ struct PostModel : Identifiable {
     var pic: String
     var time : Date
     var user: UserModel
+    var userString: String
 }
