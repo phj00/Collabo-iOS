@@ -9,6 +9,7 @@ class PostViewModel : ObservableObject{
     @Published var updateId = ""
     @Published var savedStatus = false
     @Published var group_array = [String]()
+    @Published var uid = Auth.auth().currentUser!.uid
     
     init() {
         

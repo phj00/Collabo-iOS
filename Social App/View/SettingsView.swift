@@ -131,11 +131,11 @@ struct SettingsView: View {
                     .padding(.top,edges!.top)
                     // Top Shadow Effect...
                     
-                    if postData.Projects.isEmpty{
+                    if settingsData.MyProjects.isEmpty{
                         
                         Spacer(minLength: 0)
                         
-                        if postData.noProjects{
+                        if settingsData.noMyProjects{
                             
                             Text("No Projects to View")
                                 .padding(60)
@@ -153,7 +153,7 @@ struct SettingsView: View {
                             
                             VStack(spacing: 15){
                                 
-                                ForEach(postData.Projects){post in
+                                ForEach(settingsData.MyProjects){post in
                                     
                                     PostRow(post: post,postData: postData)
                                 }
