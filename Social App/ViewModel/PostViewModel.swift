@@ -159,7 +159,9 @@ class PostViewModel : ObservableObject{
             }
         }
         
-        if group_array.contains(id) {
+        print(self.group_array)
+        
+        if self.group_array.contains(id) {
             return true
         } else {
             return false

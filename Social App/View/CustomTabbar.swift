@@ -4,9 +4,11 @@ struct CustomTabbar: View {
     @Binding var selectedTab : String
     var body: some View {
         
-        HStack(spacing: 65){
+        HStack(spacing: 53){
             
             TabButton(title: "Projects", selectedTab: $selectedTab)
+            
+            TabButton(title: "Saved", selectedTab: $selectedTab)
             
             TabButton(title: "Settings", selectedTab: $selectedTab)
         }

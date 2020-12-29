@@ -15,6 +15,9 @@ struct Home: View {
                 PostView()
                     .opacity(selectedTab == "Projects" ? 1 : 0)
                 
+                SavedView()
+                    .opacity(selectedTab == "Saved" ? 1 : 0)
+                
                 SettingsView()
                     .opacity(selectedTab == "Settings" ? 1 : 0)
             }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6FB96F0C2592CE9F00CDFDD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FB96F0B2592CE9F00CDFDD7 /* GoogleService-Info.plist */; };
+		6FCDF833259AB7E700E527DC /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDF832259AB7E700E527DC /* SavedView.swift */; };
 		AD049C5D250FA46A0097514A /* Social_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C5C250FA46A0097514A /* Social_AppApp.swift */; };
 		AD049C5F250FA46A0097514A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C5E250FA46A0097514A /* ContentView.swift */; };
 		AD049C61250FA46D0097514A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD049C60250FA46D0097514A /* Assets.xcassets */; };
@@ -21,7 +22,7 @@
 		AD049C97250FB2970097514A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C96250FB2970097514A /* ImagePicker.swift */; };
 		AD049C99250FB6390097514A /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C98250FB6390097514A /* UploadImage.swift */; };
 		AD049C9B250FB85A0097514A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C9A250FB85A0097514A /* Home.swift */; };
-		AD83FF04251104480030245B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = AD83FF03251104480030245B /* SwiftPackageProductDependency */; };
+		AD83FF04251104480030245B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AD83FF03251104480030245B /* SDWebImageSwiftUI */; };
 		AD83FF06251104700030245B /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83FF05251104700030245B /* PostView.swift */; };
 		AD83FF0A2511048E0030245B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83FF092511048E0030245B /* SettingsView.swift */; };
 		AD83FF0C251104970030245B /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83FF0B251104970030245B /* CustomTabbar.swift */; };
@@ -62,6 +63,7 @@
 		5544FBCBC79146609C5E3162 /* libPods-Social App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Social App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8AE0E90C86D7777206C04F /* libPods-Social App-Social AppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Social App-Social AppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB96F0B2592CE9F00CDFDD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6FCDF832259AB7E700E527DC /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		AD049C59250FA46A0097514A /* Social App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD049C5C250FA46A0097514A /* Social_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social_AppApp.swift; sourceTree = "<group>"; };
 		AD049C5E250FA46A0097514A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD83FF04251104480030245B /* BuildFile in Frameworks */,
+				AD83FF04251104480030245B /* SDWebImageSwiftUI in Frameworks */,
 				E89CC581475AD4066ED52958 /* libPods-Social App.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +242,7 @@
 				AD83FF0B251104970030245B /* CustomTabbar.swift */,
 				AD9ADF5E25125E1100837EBF /* PostRow.swift */,
 				AD9ADF60251261E100837EBF /* NewPost.swift */,
+				6FCDF832259AB7E700E527DC /* SavedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,7 +278,7 @@
 			);
 			name = "Social App";
 			packageProductDependencies = (
-				AD83FF03251104480030245B /* SwiftPackageProductDependency */,
+				AD83FF03251104480030245B /* SDWebImageSwiftUI */,
 			);
 			productName = "Social App";
 			productReference = AD049C59250FA46A0097514A /* Social App.app */;
@@ -352,7 +355,7 @@
 			);
 			mainGroup = AD049C50250FA46A0097514A;
 			packageReferences = (
-				AD7005552510FA060014C92D /* RemoteSwiftPackageReference */,
+				AD7005552510FA060014C92D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = AD049C5A250FA46A0097514A /* Products */;
 			projectDirPath = "";
@@ -506,6 +509,7 @@
 				AD049C8D250FA7270097514A /* Login.swift in Sources */,
 				AD9ADF5B25125A7A00837EBF /* PostModel.swift in Sources */,
 				AD049C5F250FA46A0097514A /* ContentView.swift in Sources */,
+				6FCDF833259AB7E700E527DC /* SavedView.swift in Sources */,
 				AD049C97250FB2970097514A /* ImagePicker.swift in Sources */,
 				AD9ADF6325126BE100837EBF /* NewPostModel.swift in Sources */,
 				AD83FF1225110B490030245B /* AlertView.swift in Sources */,
@@ -842,7 +846,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AD7005552510FA060014C92D /* RemoteSwiftPackageReference */ = {
+		AD7005552510FA060014C92D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -853,9 +857,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AD83FF03251104480030245B /* SwiftPackageProductDependency */ = {
+		AD83FF03251104480030245B /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AD7005552510FA060014C92D /* RemoteSwiftPackageReference */;
+			package = AD7005552510FA060014C92D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
