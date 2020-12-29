@@ -130,38 +130,21 @@ struct SettingsView: View {
                     .padding()
                     .padding(.top,edges!.top)
                     // Top Shadow Effect...
-                    
-                    if settingsData.MyProjects.isEmpty{
                         
-                        Spacer(minLength: 0)
+                    ScrollView{
                         
-                        if settingsData.noMyProjects{
+                        VStack(spacing: 15){
                             
-                            Text("No Projects to View")
-                                .padding(60)
-                        }
-                        else{
-                            
-                            ProgressView()
-                        }
-                        
-                        Spacer(minLength: 0)
-                    }
-                    else{
-                        
-                        ScrollView{
-                            
-                            VStack(spacing: 15){
-                                
-                                ForEach(settingsData.MyProjects){post in
-                                    
+                            ForEach(postData.Projects){post in
+                                if post.userString == postData.uid {
                                     PostRow(post: post,postData: postData)
                                 }
                             }
-                            .padding()
-                            .padding(.bottom,55)
                         }
+                        .padding()
+                        .padding(.bottom,55)
                     }
+                
                 }
                 
                 Spacer(minLength: 0)
