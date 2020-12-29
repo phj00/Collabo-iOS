@@ -22,7 +22,6 @@ class PostViewModel : ObservableObject{
             guard let docs = snap else{
                 self.noProjects = true
                 return
-                
             }
             
             if docs.documentChanges.isEmpty{
@@ -102,12 +101,27 @@ class PostViewModel : ObservableObject{
     
     func deletePost(id: String){
         
+        // 12.28: Deletes instance of postid from every user's savedPosts array.
+        ref.collection("Users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                // Some error occured
+                print(err.localizedDescription)
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.updateData([
+                        "savedPosts": FieldValue.arrayRemove([id])
+                    ])
+                }
+            }
+        }
+        
         ref.collection("Projects").document(id).delete { (err) in
             if err != nil{
                 print(err!.localizedDescription)
                 return
             }
         }
+
     }
     
     func editPost(id: String){
@@ -168,4 +182,5 @@ class PostViewModel : ObservableObject{
         }
         
     }
+    
 }
