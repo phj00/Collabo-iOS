@@ -39,7 +39,7 @@ struct PostView: View {
                 }
                 else{
                     
-                    ProgressView()
+                    Text("No Projects to View")
                 }
                 
                 Spacer(minLength: 0)

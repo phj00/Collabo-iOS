@@ -28,22 +28,29 @@ struct SavedView: View {
             // Top Shadow Effect...
             .background(Color("bg"))
             .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
+            
+            if !postData.getSaved().isEmpty {
+                ScrollView{
                     
-            ScrollView{
-                
-                VStack(spacing: 15){
-                    
-                    ForEach(postData.Projects){post in
+                    VStack(spacing: 15){
                         
-                        if postData.savedContains(id: post.id){
-                            PostRow(post: post, postData: postData)
+                        ForEach(postData.Projects){post in
+                            
+                            if postData.savedContains(id: post.id){
+                                PostRow(post: post, postData: postData)
+                            }
                         }
                     }
+                    .padding()
+                    .padding(.bottom,55)
                 }
-                .padding()
-                .padding(.bottom,55)
+            } else {
+                Spacer(minLength: 0)
+                
+                Text("No Projects to View")
+
+                Spacer(minLength: 0)
             }
-            Spacer(minLength: 0)
         }
     }
 }

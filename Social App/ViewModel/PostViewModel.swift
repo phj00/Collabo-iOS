@@ -183,4 +183,17 @@ class PostViewModel : ObservableObject{
         
     }
     
+    func getSaved() -> Array<String> {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("Users").document(uid).getDocument {
+            (document, error) in
+            if let document = document {
+                self.group_array = document["savedPosts"] as? Array ?? [""]
+            }
+        }
+        return self.group_array
+    }
+    
 }

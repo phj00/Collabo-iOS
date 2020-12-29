@@ -116,21 +116,6 @@ struct SettingsView: View {
                 
                 VStack{
                     
-                    HStack{
-                        
-                        Text("My Posted Projects:")
-                            .font(.subheadline)
-                            .fontWeight(.heavy)
-                            .foregroundColor(.white)
-                        
-                        Spacer(minLength: 0)
-
-                        }
-                    }
-                    .padding()
-                    .padding(.top,edges!.top)
-                    // Top Shadow Effect...
-                        
                     ScrollView{
                         
                         VStack(spacing: 15){
@@ -144,18 +129,20 @@ struct SettingsView: View {
                         .padding()
                         .padding(.bottom,55)
                     }
-                
+                    
                 }
                 
                 Spacer(minLength: 0)
             }
-        .sheet(isPresented: $settingsData.picker) {
-         
-            ImagePicker(picker: $settingsData.picker, img_Data: $settingsData.img_data)
-        }
-        .onChange(of: settingsData.img_data) { (newData) in
-            // whenever image is selected update image in Firebase...
-            settingsData.updateImage()
+            .sheet(isPresented: $settingsData.picker) {
+                
+                ImagePicker(picker: $settingsData.picker, img_Data: $settingsData.img_data)
+            }
+            .onChange(of: settingsData.img_data) { (newData) in
+                // whenever image is selected update image in Firebase...
+                settingsData.updateImage()
+            }
         }
     }
+    
 }
