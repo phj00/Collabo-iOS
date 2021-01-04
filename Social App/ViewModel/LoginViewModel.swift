@@ -3,6 +3,11 @@ import Firebase
 
 class LoginViewModel : ObservableObject{
     
+    @Published var email = ""
+    @Published var password = ""
+    
+    @Published var emailNotRegistered = false
+    
     @Published var code = ""
     @Published var number = ""
     
@@ -16,50 +21,33 @@ class LoginViewModel : ObservableObject{
     // Loading when Searches for user...
     @Published var isLoading = false
     
-    func verifyUser(){
+    func logIn(){
         
-        isLoading = true
+        self.emailNotRegistered = false
         
-        // Remove When TEsting In Live
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-        
-        let phoneNumber = "+" + code + number
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (ID, err) in
+        if self.email != "" && self.password != ""{
             
-            if err != nil{
-                self.errorMsg = err!.localizedDescription
-                self.error.toggle()
-                self.isLoading = false
-                return
-            }
-            
-            // Code Sent Successfully...
-            
-            alertView(msg: "Enter Verification Code") { (Code) in
+            Auth.auth().signIn(withEmail: self.email, password: self.password) { (res, err) in
                 
-                let credential = PhoneAuthProvider.provider().credential(withVerificationID: ID!, verificationCode: Code)
-                
-                Auth.auth().signIn(with: credential) { (res, err) in
-                    
-                    if err != nil{
-                        self.errorMsg = err!.localizedDescription
-                        self.error.toggle()
-                        self.isLoading = false
-                        return
-                    }
-                    
-                    self.checkUser()
+                if err != nil{
+                    self.errorMsg = err!.localizedDescription
+                    self.error.toggle()
+                    self.emailNotRegistered = true
+                    self.isLoading = false
+                    return
                 }
+                print("hello")
+                self.checkUser()
             }
         }
+        
     }
     
     func checkUser(){
         
         let ref = Firestore.firestore()
-        let uid = Auth.auth().currentUser!.uid
         
-        ref.collection("Users").whereField("uid", isEqualTo: uid).getDocuments { (snap, err) in
+        ref.collection("Users").whereField("email", isEqualTo: self.email).getDocuments { (snap, err) in
             
             if err != nil{
                 // No Documents..
@@ -78,4 +66,5 @@ class LoginViewModel : ObservableObject{
             self.status = true
         }
     }
+    
 }

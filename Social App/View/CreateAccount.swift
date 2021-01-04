@@ -1,8 +1,7 @@
 import SwiftUI
 
-struct Login: View {
+struct CreateAccount: View {
     
-    @StateObject var loginData = LoginViewModel()
     @StateObject var createAccountData = CreateAccountViewModel()
     
     var body: some View {
@@ -10,7 +9,7 @@ struct Login: View {
             
             HStack{
                 
-                Text("Login")
+                Text("Create Account")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
@@ -19,7 +18,7 @@ struct Login: View {
             }
             .padding()
                 
-            TextField("E-Mail", text: $loginData.email)
+            TextField("E-Mail", text: $createAccountData.email)
                 .padding()
                 .frame(width: UIScreen.main.bounds.width - 30)
                 .autocapitalization(.none)
@@ -28,7 +27,7 @@ struct Login: View {
                 .background(Color.white.opacity(0.06))
                 .cornerRadius(15)
             
-            SecureField("Password", text: $loginData.password)
+            TextField("Set Password", text: $createAccountData.password)
                 .padding()
                 .frame(width: UIScreen.main.bounds.width - 30)
                 .disableAutocorrection(true)
@@ -40,20 +39,20 @@ struct Login: View {
             .padding()
             .padding(.top,10)
             
-            if(loginData.emailNotRegistered){
-                Text("Error: Please check your e-mail and password.")
+            if(createAccountData.accountExists){
+                Text("Error: Account asssociated with e-mail already exists.")
                     .padding()
                     .foregroundColor(.red)
             }
             
             
-            if loginData.isLoading{
+            if createAccountData.isLoading{
                 ProgressView()
                     .padding()
             }
             else{
-                Button(action: loginData.logIn, label: {
-                    Text("Log-In")
+                Button(action: createAccountData.createAccount, label: {
+                    Text("Next")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.vertical)
@@ -61,41 +60,20 @@ struct Login: View {
                         .background(Color("blue"))
                         .clipShape(Capsule())
                 })
-                .disabled(loginData.email == "" || loginData.password == "" ? true : false)
-                .opacity(loginData.email == "" || loginData.password == "" ? 0.5 : 1)
+                .disabled(createAccountData.email == "" || createAccountData.password == "" ? true : false)
+                .opacity(createAccountData.email == "" || createAccountData.password == "" ? 0.5 : 1)
             }
             
             Spacer(minLength: 0)
-            
-            Text("New to Collabo?")
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .padding()
-            
-            Button(action: createAccountData.createNewAccount, label: {
-                Text("Create New Account")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color("blue"))
-                    .clipShape(Capsule())
-            })
             
             
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
-        .fullScreenCover(isPresented: $loginData.registerUser, content: {
+        .fullScreenCover(isPresented: $createAccountData.registerUser, content: {
             
             Register()
         })
-        
-        if(createAccountData.doCreateAccount){
-            CreateAccount()
-        }
-        
     }
-    
 }
 
