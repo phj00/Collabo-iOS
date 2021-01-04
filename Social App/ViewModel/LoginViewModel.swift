@@ -46,8 +46,9 @@ class LoginViewModel : ObservableObject{
     func checkUser(){
         
         let ref = Firestore.firestore()
+        let uid = Auth.auth().currentUser!.uid
         
-        ref.collection("Users").whereField("email", isEqualTo: self.email).getDocuments { (snap, err) in
+        ref.collection("Users").whereField("uid", isEqualTo: uid).getDocuments { (snap, err) in
             
             if err != nil{
                 // No Documents..
