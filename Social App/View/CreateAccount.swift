@@ -27,7 +27,7 @@ struct CreateAccount: View {
                 .background(Color.white.opacity(0.06))
                 .cornerRadius(15)
             
-            TextField("Set Password", text: $createAccountData.password)
+            SecureField("Set Password", text: $createAccountData.password)
                 .padding()
                 .frame(width: UIScreen.main.bounds.width - 30)
                 .disableAutocorrection(true)

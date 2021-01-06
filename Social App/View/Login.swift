@@ -7,17 +7,25 @@ struct Login: View {
     
     var body: some View {
         VStack{
-            
+            ZStack{
+                Circle()
+                    .fill(Color.blue)
+                    .frame(width: 150, height: 150)
+                    .padding(.top, 40)
+                Text("App Logo")
+                    .foregroundColor(Color.white)
+            }
             HStack{
-                
-                Text("Login")
+                Text("Welcome Back! Please Login.")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .multilineTextAlignment(.center)
                 
                 Spacer(minLength: 0)
             }
-            .padding()
+            .padding(20)
                 
             TextField("E-Mail", text: $loginData.email)
                 .padding()
@@ -67,13 +75,13 @@ struct Login: View {
             
             Spacer(minLength: 0)
             
-            Text("New to Collabo?")
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .padding()
+            //Text("New to Collabo?")
+            //    .foregroundColor(.white)
+            //    .fontWeight(.bold)
+            //    .padding()
             
             Button(action: createAccountData.createNewAccount, label: {
-                Text("Create New Account")
+                Text("Create a New Account here")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)

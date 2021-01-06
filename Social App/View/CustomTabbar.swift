@@ -15,6 +15,7 @@ struct CustomTabbar: View {
         .padding(.horizontal)
         .background(Color.white)
         .clipShape(Capsule())
+        
     }
 }
 
@@ -29,8 +30,17 @@ struct TabButton : View {
             
             VStack(spacing: 5){
                 
-                Image(title)
-                    .renderingMode(.template)
+                if title == "Projects" {
+                    Image(systemName: "note.text")
+                }
+                if title == "Saved"{
+                    Image(systemName: "rectangle.badge.checkmark")
+                }
+                if title == "Settings"{
+                    Image(systemName: "gearshape")
+                }
+                //Image(title)
+                //    .renderingMode(.template)
                 
                 Text(title)
                     .font(.caption)

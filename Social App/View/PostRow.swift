@@ -80,11 +80,11 @@ struct PostRow: View {
                 
                 Button(action: { if postData.savedContains(id: post.id) == false {postData.savePost(id: post.id)} else if postData.savedContains(id: post.id) == true {postData.unsavePost(id: post.id)}}) {
                     if postData.savedContains(id: post.id) == false {
-                        Image(systemName: "square.and.arrow.down")
+                        Image(systemName: "bookmark")
                             .font(.title)
                             .foregroundColor(.white)
                     } else if postData.savedContains(id: post.id) == true {
-                        Image(systemName: "square.and.arrow.down.fill")
+                        Image(systemName: "bookmark.fill")
                             .font(.title)
                             .foregroundColor(.white)
                     }
