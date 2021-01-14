@@ -43,12 +43,14 @@ class PostViewModel : ObservableObject{
                     let pic = doc.document.data()["url"] as! String
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
+                    let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
+                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString))
+                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy, positionWanted: positionWanted))
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
@@ -196,4 +198,34 @@ class PostViewModel : ObservableObject{
         return self.group_array
     }
     
+    func reachOut(id: String) {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        let temp = ref.collection("Projects").document(id)
+        
+        temp.updateData([
+            "appliedBy": FieldValue.arrayUnion([uid])
+        ])
+        
+        savedStatus = !savedStatus
+        
+    }
+    
+    func getReachOut(id: String) {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("Projects").document(uid).getDocument {
+            (document, error) in
+            let appliedBy = document?.get("appliedBy") as? Array<String>
+            print(appliedBy)
+        
+    }
+    }
+    
+        
+        
+    
 }
+

@@ -9,4 +9,6 @@ struct PostModel : Identifiable {
     var time : Date
     var user: UserModel
     var userString: String
+    var appliedBy: Array<String>
+    var positionWanted: Array<String>
 }

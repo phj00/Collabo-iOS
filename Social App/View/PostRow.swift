@@ -26,6 +26,12 @@ struct PostRow: View {
                 
                 Spacer(minLength: 0)
                 
+                Button(action: {postData.reachOut(id: post.id)}) {
+                    
+                    Text("Reach Out")
+                    
+                }
+                
                 // displaying only posted user...
                 
                 if post.user.uid == uid{
@@ -40,6 +46,12 @@ struct PostRow: View {
                         Button(action: {postData.deletePost(id: post.id)}) {
                             
                             Text("Delete")
+                        }
+                        
+                        Button(action: {postData.getReachOut(id: post.id)}) {
+                            
+                            Text("List of Reach out's")
+                            
                         }
                         
                     }, label: {
