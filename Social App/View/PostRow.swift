@@ -10,7 +10,7 @@ struct PostRow: View {
     
     var body: some View {
         
-        VStack(spacing: 15){
+        VStack(alignment: .leading){
             
             HStack(spacing: 10){
                 
@@ -58,19 +58,27 @@ struct PostRow: View {
                 WebImage(url: URL(string: post.pic)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width - 60, height: 250)
+                    .frame(width: 325)
                     .cornerRadius(15)
+                    .padding(.bottom,5)
             }
             
             HStack{
-                
-                Text(post.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                if post.pic != ""{
+                    Text(post.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(height: 150)
+
+                }else{
+                    Text(post.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(height: 300)
+                }
                 
                 Spacer(minLength: 0)
             }
-            .padding(.top,5)
             
             HStack{
                 
@@ -109,7 +117,7 @@ struct PostRow: View {
                 }
                 
             }
-            .padding(.top,5)
+            .padding(.vertical, 5)
             
         }
         .padding()
