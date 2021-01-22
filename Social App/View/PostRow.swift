@@ -68,17 +68,23 @@ struct PostRow: View {
                     Text(post.title)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(height: 150)
+                        .frame(maxHeight: 175)
+                        .lineLimit(7)
+                        .fixedSize(horizontal: false, vertical: true)
 
                 }else{
                     Text(post.title)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(height: 300)
+                        .frame(maxHeight: 200)
+                        .lineLimit(10)
+                        .fixedSize(horizontal: false, vertical: true)
+
                 }
                 
                 Spacer(minLength: 0)
             }
+            .padding(.vertical, 5)
             
             HStack{
                 
