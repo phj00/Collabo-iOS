@@ -49,8 +49,8 @@ class NewPostModel : ObservableObject{
                 "ref": ref.collection("Users").document(self.uid),
                 "time": Date(),
                 "userString": uid,
-                "appliedBy": self.postTxt,
-                "positionWanted": self.postTxt
+                "appliedBy": [String]()
+//                "positionWanted": [String]()
                 
             ]) { (err) in
                 
@@ -79,8 +79,8 @@ class NewPostModel : ObservableObject{
                     "ref": ref.collection("Users").document(self.uid),
                     "time": Date(),
                     "userString": self.uid,
-                    "appliedBy": self.postTxt, // append to the array, same with positionwanted
-                    "positionWanted": self.postTxt,
+                    "appliedBy": [String]()
+//                    "positionWanted": [String](),
                     
                     
                 ]) { (err) in

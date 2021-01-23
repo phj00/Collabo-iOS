@@ -44,13 +44,13 @@ class PostViewModel : ObservableObject{
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
                     let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
-                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
+//                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy, positionWanted: positionWanted))
+                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
@@ -164,7 +164,7 @@ class PostViewModel : ObservableObject{
         
     }
     
-    func savedContains(id: String) -> Bool {
+    func savedContains(id: String) -> Bool { // view
         
         let uid = Auth.auth().currentUser!.uid
         
@@ -199,32 +199,32 @@ class PostViewModel : ObservableObject{
     }
     
     func reachOut(id: String) {
-        
+
         let uid = Auth.auth().currentUser!.uid
-        
+
         let temp = ref.collection("Projects").document(id)
-        
+
         temp.updateData([
             "appliedBy": FieldValue.arrayUnion([uid])
         ])
-        
-        savedStatus = !savedStatus
-        
+
+//        savedStatus = !savedStatus
+
     }
-    
-    func getReachOut(id: String) {
-        
-        let uid = Auth.auth().currentUser!.uid
-        
-        Firestore.firestore().collection("Projects").document(uid).getDocument {
-            (document, error) in
-            let appliedBy = document?.get("appliedBy") as? Array<String>
-            print(appliedBy)
-        
-    }
-    }
-    
-        
+
+//    func getReachOut(id: String) {
+//
+//        let uid = Auth.auth().currentUser!.uid
+//
+//        Firestore.firestore().collection("Projects").document(uid).getDocument {
+//            (document, error) in
+//            let appliedBy = document?.get("appliedBy") as? Array<String>
+//            print(appliedBy)
+//
+//    }
+//    }
+//
+//
         
     
 }

@@ -27,9 +27,9 @@ struct PostRow: View {
                 Spacer(minLength: 0)
                 
                 Button(action: {postData.reachOut(id: post.id)}) {
-                    
+
                     Text("Reach Out")
-                    
+
                 }
                 
                 // displaying only posted user...
@@ -48,11 +48,11 @@ struct PostRow: View {
                             Text("Delete")
                         }
                         
-                        Button(action: {postData.getReachOut(id: post.id)}) {
-                            
-                            Text("List of Reach out's")
-                            
-                        }
+//                        Button(action: {postData.getReachOut(id: post.id)}) {
+//
+//                            Text("List of Reach out's")
+//
+//                        }
                         
                     }, label: {
                         
