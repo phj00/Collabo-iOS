@@ -8,7 +8,9 @@ class PostViewModel : ObservableObject{
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
+    @Published var appliedStatus = false
     @Published var group_array = [String]()
+    @Published var applied_by = [String]()
     @Published var uid = Auth.auth().currentUser!.uid
     
     init() {
@@ -43,12 +45,13 @@ class PostViewModel : ObservableObject{
                     let pic = doc.document.data()["url"] as! String
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
+                    let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString))
+                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
@@ -194,6 +197,35 @@ class PostViewModel : ObservableObject{
             }
         }
         return self.group_array
+    }
+    
+    func applyTo(postId: String){
+        
+        let uid = Auth.auth().currentUser!.uid
+        let temp = ref.collection("Projects").document(postId)
+
+        temp.updateData([
+            "appliedBy": FieldValue.arrayUnion([uid])
+        ])
+        
+        appliedStatus = true
+        
+        print(appliedStatus)
+        
+    }
+    
+    func unapply(postId: String){
+        
+        let uid = Auth.auth().currentUser!.uid
+        let temp = ref.collection("Projects").document(postId)
+        
+        temp.updateData([
+            "appliedBy": FieldValue.arrayRemove([uid])
+        ])
+        
+        appliedStatus = false
+     
+        print(appliedStatus)
     }
     
 }

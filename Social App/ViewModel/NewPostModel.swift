@@ -11,6 +11,7 @@ class NewPostModel : ObservableObject{
     
     // disabling all controls while posting...
     @Published var isPosting = false
+    @Published var applied_by = [String]()
     
     let uid = Auth.auth().currentUser!.uid
     
@@ -48,7 +49,8 @@ class NewPostModel : ObservableObject{
                 "url": "",
                 "ref": ref.collection("Users").document(self.uid),
                 "time": Date(),
-                "userString": uid
+                "userString": uid,
+                "appliedBy": [String]()
                 
             ]) { (err) in
                 
@@ -76,7 +78,8 @@ class NewPostModel : ObservableObject{
                     "url": url,
                     "ref": ref.collection("Users").document(self.uid),
                     "time": Date(),
-                    "userString": self.uid
+                    "userString": self.uid,
+                    "appliedBy": [String]()
                     
                 ]) { (err) in
                     
