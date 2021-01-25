@@ -8,7 +8,9 @@ class PostViewModel : ObservableObject{
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
+    @Published var appliedTo = false
     @Published var group_array = [String]()
+    @Published var group_array_2 = [String]()
     @Published var uid = Auth.auth().currentUser!.uid
     
     init() {
@@ -198,7 +200,7 @@ class PostViewModel : ObservableObject{
         return self.group_array
     }
     
-    func reachOut(id: String) {
+    func applyTo (id: String) {
 
         let uid = Auth.auth().currentUser!.uid
 
@@ -208,8 +210,42 @@ class PostViewModel : ObservableObject{
             "appliedBy": FieldValue.arrayUnion([uid])
         ])
 
-//        savedStatus = !savedStatus
+        appliedTo = !appliedTo
 
+    }
+    
+    func undoApply (id: String) {
+        
+        let uid = Auth.auth().currentUser!.uid
+
+        let temp = ref.collection("Projects").document(id)
+
+        temp.updateData([
+            "appliedBy": FieldValue.arrayRemove([uid])
+        ])
+
+        appliedTo = !appliedTo
+        
+        
+    }
+    
+    func appliedByContains(id: String) -> Bool { // view
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("Projects").document(id).getDocument {
+            (document, error) in
+            if let document = document {
+                self.group_array_2 = document["appliedBy"] as? Array ?? [""]
+            }
+        }
+        
+        if self.group_array_2.contains(uid) {
+            return true
+        } else {
+            return false
+        }
+        
     }
 
 //    func getReachOut(id: String) {
@@ -219,12 +255,12 @@ class PostViewModel : ObservableObject{
 //        Firestore.firestore().collection("Projects").document(uid).getDocument {
 //            (document, error) in
 //            let appliedBy = document?.get("appliedBy") as? Array<String>
-//            print(appliedBy)
+//
 //
 //    }
 //    }
-//
-//
+
+
         
     
 }

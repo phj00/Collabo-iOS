@@ -26,10 +26,17 @@ struct PostRow: View {
                 
                 Spacer(minLength: 0)
                 
-                Button(action: {postData.reachOut(id: post.id)}) {
-
-                    Text("Reach Out")
-
+                
+                Button(action: { if postData.appliedByContains(id: post.id) == false {postData.applyTo(id: post.id)} else if postData.appliedByContains(id: post.id) == true {postData.undoApply(id: post.id)}}) {
+                    if postData.appliedByContains(id: post.id) == false {
+                        
+                        Text("Apply for Project")
+                        
+                    } else if postData.appliedByContains(id: post.id) == true {
+                        
+                        Text("Applied")
+                        
+                    }
                 }
                 
                 // displaying only posted user...
