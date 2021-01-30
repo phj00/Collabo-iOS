@@ -176,8 +176,6 @@ class PostViewModel : ObservableObject{
             }
         }
         
-        print(self.group_array)
-        
         if self.group_array.contains(id) {
             return true
         } else {
@@ -203,6 +201,8 @@ class PostViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
         let temp = ref.collection("Projects").document(postId)
+        
+        let defaultApplicationMessage = "Hi, my name is ____ and I would like to talk with you more about your project."
 
         temp.updateData([
             "appliedBy": FieldValue.arrayUnion([uid])
@@ -210,8 +210,13 @@ class PostViewModel : ObservableObject{
         
         appliedStatus = true
         
-        print(appliedStatus)
+        ref.collection("Applications").document().setData([
         
+            "applicant": uid,
+            "recipient": self.getUserString(postId: postId),
+            "postId": postId,
+            "applicationMessage": defaultApplicationMessage
+        ])
     }
     
     func unapply(postId: String){
@@ -225,7 +230,20 @@ class PostViewModel : ObservableObject{
         
         appliedStatus = false
      
-        print(appliedStatus)
+    }
+    
+    func getUserString(postId: String) {
+    
+        let temp = ref.collection("Projects").document(postId)
+        
+        temp.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let property = document.get("userString") as! String
+                print(property)
+            } else {
+                print("Document does not exist.")
+            }
+        }
     }
     
 }
