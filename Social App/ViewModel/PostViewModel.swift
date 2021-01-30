@@ -12,6 +12,7 @@ class PostViewModel : ObservableObject{
     @Published var group_array = [String]()
     @Published var applied_by = [String]()
     @Published var uid = Auth.auth().currentUser!.uid
+
     
     init() {
         
@@ -208,15 +209,23 @@ class PostViewModel : ObservableObject{
             "appliedBy": FieldValue.arrayUnion([uid])
         ])
         
-        appliedStatus = true
+        appliedStatus = !appliedStatus
         
-        ref.collection("Applications").document().setData([
+        self.getUserString(postId: postId) {
+            (property) in
+            if let property = property {
+                ref.collection("Applications").document().setData([
+                    "applicant": uid,
+                    "recipient": property,
+                    "postId": postId,
+                    "applicationMessage": defaultApplicationMessage
+                ])
+            } else {
+                print("Error")
+            }
+        }
         
-            "applicant": uid,
-            "recipient": self.getUserString(postId: postId),
-            "postId": postId,
-            "applicationMessage": defaultApplicationMessage
-        ])
+        
     }
     
     func unapply(postId: String){
@@ -228,20 +237,21 @@ class PostViewModel : ObservableObject{
             "appliedBy": FieldValue.arrayRemove([uid])
         ])
         
-        appliedStatus = false
+        appliedStatus = !appliedStatus
      
     }
     
-    func getUserString(postId: String) {
+    func getUserString(postId: String, completion: @escaping (String?) -> Void) {
     
         let temp = ref.collection("Projects").document(postId)
         
         temp.getDocument { (document, error) in
             if let document = document, document.exists {
                 let property = document.get("userString") as! String
-                print(property)
+                completion(property)
             } else {
                 print("Document does not exist.")
+                completion(nil)
             }
         }
     }
