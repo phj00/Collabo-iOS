@@ -39,8 +39,8 @@ struct CreateAccount: View {
             .padding()
             .padding(.top,10)
             
-            if(createAccountData.accountExists){
-                Text("Error: Account asssociated with e-mail already exists.")
+            if(createAccountData.error){
+                Text(createAccountData.errorMsg)
                     .padding()
                     .foregroundColor(.red)
             }
