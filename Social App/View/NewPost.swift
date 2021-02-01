@@ -83,11 +83,19 @@ struct NewPost: View {
                 
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
                     
-                    Image(uiImage: UIImage(data: newPostData.img_Data)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width / 2, height: 150)
-                        .cornerRadius(15)
+                    if UIImage(data: newPostData.img_Data)!.size.width>UIImage(data: newPostData.img_Data)!.size.height{
+                        Image(uiImage: UIImage(data: newPostData.img_Data)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.width / 2)
+                            .cornerRadius(15)
+                    }else{
+                        Image(uiImage: UIImage(data: newPostData.img_Data)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: UIScreen.main.bounds.width / 2.5)
+                            .cornerRadius(15)
+                    }
                     
                     // Cancel Button...
                     
