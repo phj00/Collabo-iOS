@@ -12,6 +12,7 @@ struct PostRow: View {
         
         VStack(spacing: 15){
             
+            
             HStack(spacing: 10){
                 
                 WebImage(url: URL(string: post.user.pic)!)
@@ -20,7 +21,9 @@ struct PostRow: View {
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                 
-                Text(post.user.username)
+                
+                
+                Text(post.title)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
@@ -30,8 +33,9 @@ struct PostRow: View {
                 Button(action: { if postData.appliedByContains(id: post.id) == false {postData.applyTo(id: post.id)} else if postData.appliedByContains(id: post.id) == true {postData.undoApply(id: post.id)}}) {
                     if postData.appliedByContains(id: post.id) == false {
                         
-                        Text("Apply for Project")
-                        
+                        Text("Apply")
+                            .foregroundColor(.white)
+                            
                     } else if postData.appliedByContains(id: post.id) == true {
                         
                         Text("Applied")
@@ -83,7 +87,7 @@ struct PostRow: View {
             
             HStack{
                 
-                Text(post.title)
+                Text(post.user.username)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 
@@ -124,6 +128,7 @@ struct PostRow: View {
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                    
                     
                 }
                 

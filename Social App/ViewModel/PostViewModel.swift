@@ -46,13 +46,13 @@ class PostViewModel : ObservableObject{
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
                     let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
-//                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
+                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
+                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy, positionWanted: positionWanted))
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
