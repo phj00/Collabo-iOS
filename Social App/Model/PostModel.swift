@@ -10,4 +10,8 @@ struct PostModel : Identifiable {
     var user: UserModel
     var userString: String
     var appliedBy: Array<String>
+<<<<<<< HEAD
+=======
+    var positionWanted: Array<String>
+>>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
 }

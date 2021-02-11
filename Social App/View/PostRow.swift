@@ -12,6 +12,7 @@ struct PostRow: View {
         
         VStack(alignment: .leading){
             
+            
             HStack(spacing: 10){
                 
                 WebImage(url: URL(string: post.user.pic)!)
@@ -20,7 +21,9 @@ struct PostRow: View {
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                 
-                Text(post.user.username)
+                
+                
+                Text(post.title)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
@@ -38,6 +41,20 @@ struct PostRow: View {
                 
                 Spacer(minLength: 0)
                 
+                
+                Button(action: { if postData.appliedByContains(id: post.id) == false {postData.applyTo(id: post.id)} else if postData.appliedByContains(id: post.id) == true {postData.undoApply(id: post.id)}}) {
+                    if postData.appliedByContains(id: post.id) == false {
+                        
+                        Text("Apply")
+                            .foregroundColor(.white)
+                            
+                    } else if postData.appliedByContains(id: post.id) == true {
+                        
+                        Text("Applied")
+                        
+                    }
+                }
+                
                 // displaying only posted user...
                 
                 if post.user.uid == uid{
@@ -53,6 +70,12 @@ struct PostRow: View {
                             
                             Text("Delete")
                         }
+                        
+//                        Button(action: {postData.getReachOut(id: post.id)}) {
+//
+//                            Text("List of Reach out's")
+//
+//                        }
                         
                     }, label: {
                         
@@ -76,6 +99,7 @@ struct PostRow: View {
             }
             
             HStack{
+<<<<<<< HEAD
                 if post.pic != ""{
                     Text(post.title)
                         .fontWeight(.bold)
@@ -93,6 +117,12 @@ struct PostRow: View {
                         .fixedSize(horizontal: false, vertical: true)
 
                 }
+=======
+                
+                Text(post.user.username)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+>>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
                 
                 Spacer(minLength: 0)
             }
@@ -131,6 +161,7 @@ struct PostRow: View {
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                    
                     
                 }
                 

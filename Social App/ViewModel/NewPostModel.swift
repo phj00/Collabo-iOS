@@ -50,7 +50,12 @@ class NewPostModel : ObservableObject{
                 "ref": ref.collection("Users").document(self.uid),
                 "time": Date(),
                 "userString": uid,
+<<<<<<< HEAD
                 "appliedBy": [String]()
+=======
+                "appliedBy": [String](),
+                "positionWanted": self.postTxt
+>>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
                 
             ]) { (err) in
                 
@@ -79,7 +84,13 @@ class NewPostModel : ObservableObject{
                     "ref": ref.collection("Users").document(self.uid),
                     "time": Date(),
                     "userString": self.uid,
+<<<<<<< HEAD
                     "appliedBy": [String]()
+=======
+                    "appliedBy": [String](),
+                    "positionWanted": self.postTxt
+                    
+>>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
                     
                 ]) { (err) in
                     
