@@ -11,6 +11,8 @@ struct CustomTabbar: View {
             TabButton(title: "Saved", selectedTab: $selectedTab)
             
             TabButton(title: "Settings", selectedTab: $selectedTab)
+            
+            TabButton(title: "Applications", selectedTab: $selectedTab)
         }
         .padding(.horizontal)
         .background(Color.white)
@@ -39,8 +41,9 @@ struct TabButton : View {
                 if title == "Settings"{
                     Image(systemName: "gearshape")
                 }
-                //Image(title)
-                //    .renderingMode(.template)
+                if title == "Applications"{
+                    Image(systemName: "paperplane")
+                }
                 
                 Text(title)
                     .font(.caption)

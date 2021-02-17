@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0D2BA725DD373A0081B6EF /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D2BA625DD373A0081B6EF /* ApplicationModel.swift */; };
+		6F0D2BB425DD3CEE0081B6EF /* ApplicationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D2BB325DD3CEE0081B6EF /* ApplicationRow.swift */; };
+		6F3544BA25D28F40005419C7 /* ApplicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3544B925D28F40005419C7 /* ApplicationsViewModel.swift */; };
+		6F3544C725D28FE5005419C7 /* ApplicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3544C625D28FE5005419C7 /* ApplicationsView.swift */; };
 		6FB96F0C2592CE9F00CDFDD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FB96F0B2592CE9F00CDFDD7 /* GoogleService-Info.plist */; };
 		6FCA4B0E25A2C58000282FC3 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA4B0D25A2C58000282FC3 /* CreateAccountViewModel.swift */; };
 		6FCA4B1325A2C5A700282FC3 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA4B1225A2C5A700282FC3 /* CreateAccount.swift */; };
@@ -64,6 +68,10 @@
 		4C8A58ADCE0BBCC5274DC05F /* Pods-Social App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social App.release.xcconfig"; path = "Target Support Files/Pods-Social App/Pods-Social App.release.xcconfig"; sourceTree = "<group>"; };
 		5544FBCBC79146609C5E3162 /* libPods-Social App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Social App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8AE0E90C86D7777206C04F /* libPods-Social App-Social AppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Social App-Social AppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F0D2BA625DD373A0081B6EF /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
+		6F0D2BB325DD3CEE0081B6EF /* ApplicationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationRow.swift; sourceTree = "<group>"; };
+		6F3544B925D28F40005419C7 /* ApplicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationsViewModel.swift; sourceTree = "<group>"; };
+		6F3544C625D28FE5005419C7 /* ApplicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationsView.swift; sourceTree = "<group>"; };
 		6FB96F0B2592CE9F00CDFDD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FCA4B0D25A2C58000282FC3 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		6FCA4B1225A2C5A700282FC3 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -227,6 +235,7 @@
 			children = (
 				AD049C98250FB6390097514A /* UploadImage.swift */,
 				AD83FF0F251106E10030245B /* UserModel.swift */,
+				6F0D2BA625DD373A0081B6EF /* ApplicationModel.swift */,
 				AD83FF1125110B490030245B /* AlertView.swift */,
 				AD9ADF5A25125A7A00837EBF /* PostModel.swift */,
 				AD9ADF5C25125B9D00837EBF /* FetchUser.swift */,
@@ -248,6 +257,8 @@
 				AD9ADF60251261E100837EBF /* NewPost.swift */,
 				6FCDF832259AB7E700E527DC /* SavedView.swift */,
 				6FCA4B1225A2C5A700282FC3 /* CreateAccount.swift */,
+				6F3544C625D28FE5005419C7 /* ApplicationsView.swift */,
+				6F0D2BB325DD3CEE0081B6EF /* ApplicationRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				AD9ADF5825125A5900837EBF /* PostViewModel.swift */,
 				AD9ADF6225126BE100837EBF /* NewPostModel.swift */,
 				6FCA4B0D25A2C58000282FC3 /* CreateAccountViewModel.swift */,
+				6F3544B925D28F40005419C7 /* ApplicationsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -512,8 +524,11 @@
 				AD9ADF5925125A5900837EBF /* PostViewModel.swift in Sources */,
 				AD83FF0C251104970030245B /* CustomTabbar.swift in Sources */,
 				AD049C8F250FA78C0097514A /* LoginViewModel.swift in Sources */,
+				6F0D2BA725DD373A0081B6EF /* ApplicationModel.swift in Sources */,
 				AD049C8D250FA7270097514A /* Login.swift in Sources */,
+				6F3544BA25D28F40005419C7 /* ApplicationsViewModel.swift in Sources */,
 				AD9ADF5B25125A7A00837EBF /* PostModel.swift in Sources */,
+				6F0D2BB425DD3CEE0081B6EF /* ApplicationRow.swift in Sources */,
 				AD049C5F250FA46A0097514A /* ContentView.swift in Sources */,
 				6FCDF833259AB7E700E527DC /* SavedView.swift in Sources */,
 				6FCA4B1325A2C5A700282FC3 /* CreateAccount.swift in Sources */,
@@ -529,6 +544,7 @@
 				AD049C91250FAE280097514A /* Register.swift in Sources */,
 				AD83FF06251104700030245B /* PostView.swift in Sources */,
 				AD9ADF5F25125E1100837EBF /* PostRow.swift in Sources */,
+				6F3544C725D28FE5005419C7 /* ApplicationsView.swift in Sources */,
 				AD049C93250FAF200097514A /* RegsiterViewModel.swift in Sources */,
 				6FCA4B0E25A2C58000282FC3 /* CreateAccountViewModel.swift in Sources */,
 				AD83FF0A2511048E0030245B /* SettingsView.swift in Sources */,
