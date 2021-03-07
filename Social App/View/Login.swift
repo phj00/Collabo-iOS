@@ -99,11 +99,14 @@ struct Login: View {
             Register()
         })
         
-        if(createAccountData.doCreateAccount){
+        
+        .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
             CreateAccount()
-        }
+            
+            }
+        )}
         
     }
     
-}
+
 
