@@ -15,11 +15,6 @@ struct PostRow: View {
             
             HStack(spacing: 10){
                 
-                WebImage(url: URL(string: post.user.pic)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
                 
                 
                 
@@ -27,14 +22,21 @@ struct PostRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
+                
+                
+                
+                
+                
                 Button(action: { if postData.appliedStatus == false {postData.applyTo(postId: post.id)} else if postData.appliedStatus == true {postData.unapply(postId: post.id)}}) {
                     if postData.appliedStatus == false {
                         Text("Apply")
                             .font(.caption)
+                            .font(.system(size: 16))
                             .fontWeight(.bold)
                     } else if postData.appliedStatus == true {
                         Text("Un-Apply")
                             .font(.caption)
+                            .font(.system(size: 16))
                             .fontWeight(.bold)
                     }
                 }
@@ -76,6 +78,21 @@ struct PostRow: View {
                 }
             }
             
+            HStack(spacing: 10){
+                
+                WebImage(url: URL(string: post.user.pic)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 25, height: 25)
+                    .clipShape(Circle())
+                
+                Text(post.user.username)
+                    .fontWeight(.bold)
+                    .font(.system(size: 12))
+                    .foregroundColor(.white)
+                
+            }
+            
             if post.pic != ""{
                 
                 WebImage(url: URL(string: post.pic)!)
@@ -106,10 +123,6 @@ struct PostRow: View {
 //
 //                }
 
-                
-                Text(post.user.username)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
 
                 
                 Spacer(minLength: 0)
