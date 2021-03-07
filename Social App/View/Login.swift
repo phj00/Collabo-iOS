@@ -94,19 +94,25 @@ struct Login: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
-        .fullScreenCover(isPresented: $loginData.registerUser, content: {
-            
+        EmptyView().fullScreenCover(isPresented: $loginData.registerUser, content: {
+
             Register()
+
         })
+//        EmptyView().fullScreenCover(isPresented: $createAccountData.doCreateAccount)
+//              { CreateAccount() }
         
-        
-        .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
+        if (createAccountData.doCreateAccount){
+
             CreateAccount()
-            
-            }
-        )}
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .bottom)
+                .edgesIgnoringSafeArea(.all)
+
+        }
+    
+    
         
     }
-    
+}
 
 
