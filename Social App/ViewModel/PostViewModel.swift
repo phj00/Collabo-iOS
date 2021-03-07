@@ -53,8 +53,8 @@ class PostViewModel : ObservableObject{
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
                     let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
-                    let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
-                    
+                    let positionWanted = doc.document.data()["positionWanted"] as! String
+//
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in

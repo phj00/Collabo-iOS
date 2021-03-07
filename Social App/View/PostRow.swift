@@ -88,23 +88,23 @@ struct PostRow: View {
             
             HStack{
 
-                if post.pic != ""{
-                    Text(post.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxHeight: 175)
-                        .lineLimit(7)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                }else{
-                    Text(post.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxHeight: 200)
-                        .lineLimit(10)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                }
+//                if post.pic != ""{
+//                    Text(post.title)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .frame(maxHeight: 175)
+//                        .lineLimit(7)
+//                        .fixedSize(horizontal: false, vertical: true)
+//
+//                }else{
+//                    Text(post.title)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .frame(maxHeight: 200)
+//                        .lineLimit(10)
+//                        .fixedSize(horizontal: false, vertical: true)
+//
+//                }
 
                 
                 Text(post.user.username)

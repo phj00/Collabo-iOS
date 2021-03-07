@@ -63,12 +63,24 @@ struct NewPost: View {
                 .opacity(newPostData.isPosting ? 0.5 : 1)
                 .disabled(newPostData.isPosting ? true : false)
             
-            Text("     Project Description:")
+            Text("     Project Title:")
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
             TextEditor(text: $newPostData.postTxt)
+                .cornerRadius(15)
+                //.background(Color(.clear))
+                .padding()
+                .opacity(newPostData.isPosting ? 0.5 : 1)
+                .disabled(newPostData.isPosting ? true : false)
+            
+            Text("     Positions Wanted:")
+                .font(.caption)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+            
+            TextEditor(text: $newPostData.positionWantedTxt)
                 .cornerRadius(15)
                 //.background(Color(.clear))
                 .padding()
