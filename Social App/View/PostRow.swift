@@ -42,18 +42,6 @@ struct PostRow: View {
                 Spacer(minLength: 0)
                 
                 
-                Button(action: { if postData.appliedByContains(id: post.id) == false {postData.applyTo(id: post.id)} else if postData.appliedByContains(id: post.id) == true {postData.undoApply(id: post.id)}}) {
-                    if postData.appliedByContains(id: post.id) == false {
-                        
-                        Text("Apply")
-                            .foregroundColor(.white)
-                            
-                    } else if postData.appliedByContains(id: post.id) == true {
-                        
-                        Text("Applied")
-                        
-                    }
-                }
                 
                 // displaying only posted user...
                 
@@ -99,7 +87,7 @@ struct PostRow: View {
             }
             
             HStack{
-<<<<<<< HEAD
+
                 if post.pic != ""{
                     Text(post.title)
                         .fontWeight(.bold)
@@ -117,12 +105,12 @@ struct PostRow: View {
                         .fixedSize(horizontal: false, vertical: true)
 
                 }
-=======
+
                 
                 Text(post.user.username)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
+
                 
                 Spacer(minLength: 0)
             }

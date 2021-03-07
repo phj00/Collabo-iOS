@@ -8,15 +8,15 @@ class PostViewModel : ObservableObject{
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
-<<<<<<< HEAD
+
     @Published var appliedStatus = false
     @Published var group_array = [String]()
     @Published var applied_by = [String]()
-=======
+
     @Published var appliedTo = false
-    @Published var group_array = [String]()
     @Published var group_array_2 = [String]()
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
+    @Published var group_array_3 = [String]()
+
     @Published var uid = Auth.auth().currentUser!.uid
 
     
@@ -53,20 +53,15 @@ class PostViewModel : ObservableObject{
                     let userRef = doc.document.data()["ref"] as! DocumentReference
                     let userString = doc.document.data()["userString"] as! String
                     let appliedBy = doc.document.data()["appliedBy"] as! Array<String>
-<<<<<<< HEAD
-=======
                     let positionWanted = doc.document.data()["positionWanted"] as! Array<String>
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
                     
                     // getting user Data...
                     
                     fetchUser(uid: userRef.documentID) { (user) in
                         
-<<<<<<< HEAD
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
-=======
+
                         self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy, positionWanted: positionWanted))
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
+
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Projects.sort { (p1, p2) -> Bool in
@@ -212,28 +207,28 @@ class PostViewModel : ObservableObject{
         return self.group_array
     }
     
-<<<<<<< HEAD
+
     func applyTo(postId: String){
         
         let uid = Auth.auth().currentUser!.uid
         let temp = ref.collection("Projects").document(postId)
-        
+
         let defaultApplicationMessage = "Hi, my name is ____ and I would like to talk with you more about your project."
-=======
-    func applyTo (id: String) {
 
-        let uid = Auth.auth().currentUser!.uid
+//    func applyTo (id: String) {
+//
+//        let uid = Auth.auth().currentUser!.uid
+//
+//        let temp = ref.collection("Projects").document(id)
+//
+//
+//        temp.updateData([
+//            "appliedBy": FieldValue.arrayUnion([uid])
+//        ])
 
-        let temp = ref.collection("Projects").document(id)
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
-
-        temp.updateData([
-            "appliedBy": FieldValue.arrayUnion([uid])
-        ])
-<<<<<<< HEAD
         
         appliedStatus = !appliedStatus
-        
+
         self.getUserString(postId: postId) {
             (property) in
             if let property = property {
@@ -247,27 +242,27 @@ class PostViewModel : ObservableObject{
                 print("Error")
             }
         }
-        
-        
+
+
     }
-    
+
     func unapply(postId: String){
-        
+
         let uid = Auth.auth().currentUser!.uid
         let temp = ref.collection("Projects").document(postId)
-        
+
         temp.updateData([
             "appliedBy": FieldValue.arrayRemove([uid])
         ])
-        
+
         appliedStatus = !appliedStatus
-     
+
     }
-    
+
     func getUserString(postId: String, completion: @escaping (String?) -> Void) {
-    
+
         let temp = ref.collection("Projects").document(postId)
-        
+
         temp.getDocument { (document, error) in
             if let document = document, document.exists {
                 let property = document.get("userString") as! String
@@ -278,45 +273,44 @@ class PostViewModel : ObservableObject{
             }
         }
     }
-=======
 
-        appliedTo = !appliedTo
-
-    }
-    
-    func undoApply (id: String) {
-        
-        let uid = Auth.auth().currentUser!.uid
-
-        let temp = ref.collection("Projects").document(id)
-
-        temp.updateData([
-            "appliedBy": FieldValue.arrayRemove([uid])
-        ])
-
-        appliedTo = !appliedTo
-        
-        
-    }
-    
-    func appliedByContains(id: String) -> Bool { // view
-        
-        let uid = Auth.auth().currentUser!.uid
-        
-        Firestore.firestore().collection("Projects").document(id).getDocument {
-            (document, error) in
-            if let document = document {
-                self.group_array_2 = document["appliedBy"] as? Array ?? [""]
-            }
-        }
-        
-        if self.group_array_2.contains(uid) {
-            return true
-        } else {
-            return false
-        }
-        
-    }
+//        appliedTo = !appliedTo
+//
+//    }
+//
+//    func undoApply (id: String) {
+//
+//        let uid = Auth.auth().currentUser!.uid
+//
+//        let temp = ref.collection("Projects").document(id)
+//
+//        temp.updateData([
+//            "appliedBy": FieldValue.arrayRemove([uid])
+//        ])
+//
+//        appliedTo = !appliedTo
+//
+//
+//    }
+//
+//    func appliedByContains(id: String) -> Bool { // view
+//
+//        let uid = Auth.auth().currentUser!.uid
+//
+//        Firestore.firestore().collection("Projects").document(id).getDocument {
+//            (document, error) in
+//            if let document = document {
+//                self.group_array_2 = document["appliedBy"] as? Array ?? [""]
+//            }
+//        }
+//
+//        if self.group_array_2.contains(uid) {
+//            return true
+//        } else {
+//            return false
+//        }
+//
+//    }
 
 //    func getReachOut(id: String) {
 //
@@ -331,8 +325,7 @@ class PostViewModel : ObservableObject{
 //    }
 
 
-        
->>>>>>> bfeecfe42de735fc225e76a356a945437f92c829
+    
     
 }
 
