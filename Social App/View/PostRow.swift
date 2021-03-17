@@ -24,13 +24,13 @@ struct PostRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
-                Button(action: { if postData.appliedStatus == false {postData.applyTo(postId: post.id)} else if postData.appliedStatus == true {postData.unapply(postId: post.id)}}) {
+                Button(action: { if postData.appliedStatus == false {postData.applyTo(postId: post.id)} else if postData.appliedStatus == true {postData.withdrawApplication(postId: post.id)}}) {
                     if postData.appliedStatus == false {
                         Text("Apply")
                             .font(.caption)
                             .fontWeight(.bold)
                     } else if postData.appliedStatus == true {
-                        Text("Un-Apply")
+                        Text("Withdraw")
                             .font(.caption)
                             .fontWeight(.bold)
                     }

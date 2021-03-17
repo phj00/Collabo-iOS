@@ -242,7 +242,7 @@ class PostViewModel : ObservableObject{
         
     }
     
-    func unapply(postId: String){
+    func withdrawApplication(postId: String){
         
         let uid = Auth.auth().currentUser!.uid
         let temp = ref.collection("Projects").document(postId)
@@ -250,6 +250,16 @@ class PostViewModel : ObservableObject{
         temp.updateData([
             "appliedBy": FieldValue.arrayRemove([uid])
         ])
+        
+        ref.collection("Applications").whereField("postId", isEqualTo: postId).getDocuments() { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in QuerySnapshot!.documents {
+                    document.reference.delete()
+                }
+            }
+        }
         
         appliedStatus = !appliedStatus
      
