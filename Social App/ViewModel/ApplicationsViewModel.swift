@@ -23,7 +23,9 @@ class ApplicationsViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
         
-        ref.collection("Applications").whereField("recipient", isEqualTo: uid).getDocuments { (snap, err) in
+        self.IncomingApplications.removeAll()
+        
+        ref.collection("Applications").whereField("recepientUid", isEqualTo: uid).getDocuments { (snap, err) in
             
             if let err = err {
                 // Error fetching documents
@@ -31,12 +33,14 @@ class ApplicationsViewModel : ObservableObject{
             } else {
                 for document in snap!.documents {
                     
-                    let applicantID = document.data()["applicant"] as! String
-                    let recepientID = document.data()["recipient"] as! String
+                    let applicantID = document.data()["applicantUid"] as! String
+                    let recepientID = document.data()["recepientUid"] as! String
+                    let applicantUserName = document.data()["applicantName"] as! String
                     let applicationMessage = document.data()["applicationMessage"] as! String
                     let postID = document.data()["postId"] as! String
+                    let applicantPhoto = document.data()["applicantPhoto"] as! String
                     
-                    self.IncomingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicationMessage: applicationMessage, postID: postID))
+                    self.IncomingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicantUserName: applicantUserName, applicationMessage: applicationMessage, postID: postID, applicantPhoto: applicantPhoto))
                     
                     print("Success")
                     

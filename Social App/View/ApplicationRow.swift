@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import SDWebImageSwiftUI
 
 struct ApplicationRow: View {
     
@@ -18,13 +19,24 @@ struct ApplicationRow: View {
         
         VStack(alignment: .leading){
             
-            HStack(spacing: 10){
+            HStack(spacing: 20) {
+            
+                Text("Applicant: \(application.applicantUserName)")
+                    .font(.body)
                 
-                Text(application.applicantID)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                
+                WebImage(url: URL(string: application.applicantPhoto)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    
             }
+            
+            Divider()
+            
+            Text(application.applicationMessage)
+                .font(.caption)
+                
         }
         .padding()
         .background(Color.white.opacity(0.06))

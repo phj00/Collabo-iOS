@@ -202,8 +202,6 @@ class PostViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
         let temp = ref.collection("Projects").document(postId)
-        
-        let defaultApplicationMessage = "Hi, my name is ____ and I would like to talk with you more about your project."
 
         temp.updateData([
             "appliedBy": FieldValue.arrayUnion([uid])
@@ -211,20 +209,36 @@ class PostViewModel : ObservableObject{
         
         appliedStatus = !appliedStatus
         
-        self.getUserString(postId: postId) {
+        let dataRef = ref.collection("Applications").document()
+        let applicationUid = dataRef.documentID
+        
+        self.getApplicantName() {
             (property) in
             if let property = property {
-                ref.collection("Applications").document().setData([
-                    "applicant": uid,
-                    "recipient": property,
+                dataRef.setData([
+                    "applicantUid": uid,
+                    "applicantName": property,
                     "postId": postId,
-                    "applicationMessage": defaultApplicationMessage
+                    "applicationMessage": "Hi, my name is \(property) and I would like to talk with you more about your project."
                 ])
             } else {
                 print("Error")
             }
         }
         
+        self.getUserString(postId: postId) {
+            (property) in
+            if let property = property {
+                ref.collection("Applications").document(applicationUid).setData(["recepientUid": property], merge: true)
+            }
+        }
+        
+        self.getApplicantPhoto() {
+            (property) in
+            if let property = property {
+                ref.collection("Applications").document(applicationUid).setData(["applicantPhoto": property], merge: true)
+            }
+        }
         
     }
     
@@ -255,5 +269,56 @@ class PostViewModel : ObservableObject{
             }
         }
     }
+    
+    func getApplicantName(completion: @escaping (String?) -> Void) {
+        
+        let temp = ref.collection("Users").document(uid)
+        
+        temp.getDocument { (document, error) in
+            
+            if let document = document, document.exists {
+                let property = document.get("username") as! String
+                completion(property)
+            } else {
+                print("Document does not exist.")
+                completion(nil)
+            }
+            
+        }
+        
+    }
+    
+    func getApplicantPhoto(completion: @escaping (String?) -> Void) {
+        
+        let temp = ref.collection("Users").document(uid)
+        
+        temp.getDocument { (document, error) in
+            
+            if let document = document, document.exists {
+                let property = document.get("imageurl") as! String
+                completion(property)
+            } else {
+                print("Document does not exist.")
+                completion(nil)
+            }
+            
+        }
+    }
+    
+//    func getPositionApplied(postId: String, completion @escaping (String?) -> Void) {
+//        
+//        let temp = ref.collection("Projects").document(postId)
+//        
+//        temp.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let property = document.get("userString") as! String
+//                completion(property)
+//            } else {
+//                print("Document does not exist.")
+//                completion(nil)
+//            }
+//        }
+//        
+//    }
     
 }
