@@ -20,6 +20,9 @@ struct Home: View {
                 
                 SettingsView()
                     .opacity(selectedTab == "Settings" ? 1 : 0)
+                
+                ApplicationsView()
+                    .opacity(selectedTab == "Applications" ? 1 : 0)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
