@@ -24,7 +24,7 @@ struct PostRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
-                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == false {postData.withdrawApplication(postId: post.id)}}) {
+                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
                     if postData.appliedContains(id: post.id) == false {
                         Text("Apply")
                             .font(.caption)
