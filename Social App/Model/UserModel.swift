@@ -7,4 +7,5 @@ struct UserModel {
     var bio: String
     var uid : String
     var savedPosts : Array<String>
+    var appliedTo: Array<String>
 }
