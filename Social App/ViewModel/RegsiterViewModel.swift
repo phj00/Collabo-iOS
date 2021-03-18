@@ -6,6 +6,7 @@ class RegisterViewModel : ObservableObject{
     @Published var name = ""
     @Published var bio = ""
     @Published var school = ""
+    @Published var company = ""
     @Published var savedPosts = [String]()
     
     @Published var image_Data = Data(count: 0)
@@ -13,6 +14,7 @@ class RegisterViewModel : ObservableObject{
     let ref = Firestore.firestore()
     // Loading View...
     @Published var isLoading = false
+    @Published var NewAccLogIn = false
     @AppStorage("current_status") var status = false
     
     func register(){
@@ -30,6 +32,7 @@ class RegisterViewModel : ObservableObject{
                 "imageurl": url,
                 "username": self.name,
                 "school": self.school,
+                "company": self.company,
                 "bio": self.bio,
                 "dateCreated": Date(),
                 "savedPosts": self.savedPosts
@@ -43,6 +46,7 @@ class RegisterViewModel : ObservableObject{
                 self.isLoading = false
                 // success means settings status as true...
                 self.status = true
+                self.NewAccLogIn.toggle()
             }
         }
     }

@@ -19,6 +19,7 @@ struct PostRow: View {
                 
                 
                 Text(post.title)
+                    .font(.system(size: 24))
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
@@ -76,6 +77,15 @@ struct PostRow: View {
                             .foregroundColor(.white)
                     })
                 }
+            }.padding(.bottom, 5)
+            
+            HStack(spacing: 10){
+                
+                Text(post.user.company)
+                    .fontWeight(.bold)
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
+                
             }
             
             HStack(spacing: 10){

@@ -67,6 +67,17 @@ struct Register: View {
             
             HStack(spacing: 15){
                 
+                TextField("Company", text: $registerData.company)
+                    .padding()
+                    .keyboardType(.default)
+                    .background(Color.white.opacity(0.06))
+                    .cornerRadius(15)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            
+            HStack(spacing: 15){
+                
                 TextField("Bio", text: $registerData.bio)
                     .padding()
                     .keyboardType(.numberPad)

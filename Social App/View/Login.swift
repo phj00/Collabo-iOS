@@ -4,6 +4,7 @@ struct Login: View {
     
     @StateObject var loginData = LoginViewModel()
     @StateObject var createAccountData = CreateAccountViewModel()
+    @StateObject var registerData = RegisterViewModel()
     
     var body: some View {
         VStack{
@@ -94,22 +95,33 @@ struct Login: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
+//        .fullScreenCover(isPresented: $loginData.registerUser, content: {
+//            
+//            Register()
+//
+//        })
         EmptyView().fullScreenCover(isPresented: $loginData.registerUser, content: {
-
+            
             Register()
 
         })
-//        EmptyView().fullScreenCover(isPresented: $createAccountData.doCreateAccount)
-//              { CreateAccount() }
-        
-        if (createAccountData.doCreateAccount){
-
+        EmptyView().fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
+            
             CreateAccount()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .bottom)
-                .edgesIgnoringSafeArea(.all)
-
-        }
-    
+        })
+        EmptyView().fullScreenCover(isPresented: $registerData.NewAccLogIn, content: {
+            
+            Home()
+        })
+        
+        
+//        if (createAccountData.doCreateAccount){
+//
+//            CreateAccount()
+//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .bottom)
+//                .edgesIgnoringSafeArea(.all)
+//
+//        }
     
         
     }

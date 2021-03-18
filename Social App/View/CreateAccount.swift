@@ -3,6 +3,7 @@ import SwiftUI
 struct CreateAccount: View {
     
     @StateObject var createAccountData = CreateAccountViewModel()
+
     
     var body: some View {
         VStack{
@@ -24,8 +25,9 @@ struct CreateAccount: View {
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .keyboardType(.emailAddress)
-                .background(Color.white.opacity(0.06))
+                .background(Color.black.opacity(0.06))
                 .cornerRadius(15)
+                .foregroundColor(.white)
             
             SecureField("Set Password", text: $createAccountData.password)
                 .padding()
@@ -33,8 +35,9 @@ struct CreateAccount: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .keyboardType(.default)
-                .background(Color.white.opacity(0.06))
+                .background(Color.black.opacity(0.06))
                 .cornerRadius(15)
+                .foregroundColor(.white)
                 
             .padding()
             .padding(.top,10)
