@@ -3,6 +3,7 @@ import SwiftUI
 struct PostView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var postData = PostViewModel()
+    @StateObject var profileData = ProfileViewModel()
     var body: some View {
         
         VStack{
@@ -52,7 +53,7 @@ struct PostView: View {
                         
                         ForEach(postData.Projects){post in
                             
-                            PostRow(post: post,postData: postData)
+                            PostRow(post: post,postData: postData, profileData: profileData)
                         }
                     }
                     .padding()

@@ -6,6 +6,7 @@ struct PostRow: View {
     
     var post : PostModel
     @ObservedObject var postData : PostViewModel
+    @ObservedObject var profileData : ProfileViewModel
     let uid = Auth.auth().currentUser!.uid
     
     var body: some View {
@@ -13,16 +14,18 @@ struct PostRow: View {
         VStack(alignment: .leading){
             
             HStack(spacing: 10){
-                
                 WebImage(url: URL(string: post.user.pic)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                 
-                Text(post.user.username)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
+                Button(action: {postData.showProfile.toggle(); profileData.showProf(userString: post.userString)}, label: {
+                    Text(post.user.username)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                })
+
                 
                 Button(action: { if postData.appliedStatus == false {postData.applyTo(postId: post.id)} else if postData.appliedStatus == true {postData.unapply(postId: post.id)}}) {
                     if postData.appliedStatus == false {
@@ -141,6 +144,13 @@ struct PostRow: View {
         .padding()
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
+        
+        if(postData.showProfile) {
+            ProfileView(userString : post.userString, profileData : profileData)
+                .fullScreenCover(isPresented: $postData.showProfile) {
+                    ProfileView(userString : post.userString, profileData: profileData)
+                }
+        }
     }
     
 }
