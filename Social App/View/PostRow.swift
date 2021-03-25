@@ -27,13 +27,13 @@ struct PostRow: View {
                 })
 
                 
-                Button(action: { if postData.appliedStatus == false {postData.applyTo(postId: post.id)} else if postData.appliedStatus == true {postData.unapply(postId: post.id)}}) {
-                    if postData.appliedStatus == false {
+                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
+                    if postData.appliedContains(id: post.id) == false {
                         Text("Apply")
                             .font(.caption)
                             .fontWeight(.bold)
-                    } else if postData.appliedStatus == true {
-                        Text("Un-Apply")
+                    } else if postData.appliedContains(id: post.id) == true {
+                        Text("Withdraw")
                             .font(.caption)
                             .fontWeight(.bold)
                     }

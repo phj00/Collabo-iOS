@@ -11,6 +11,7 @@ class PostViewModel : ObservableObject{
     @Published var appliedStatus = false
     @Published var group_array = [String]()
     @Published var applied_by = [String]()
+    @Published var applied_array = [String]()
     @Published var uid = Auth.auth().currentUser!.uid
     @Published var showProfile = false
 
@@ -202,10 +203,13 @@ class PostViewModel : ObservableObject{
     func applyTo(postId: String){
         
         let uid = Auth.auth().currentUser!.uid
-        let temp = ref.collection("Projects").document(postId)
 
-        temp.updateData([
+        ref.collection("Projects").document(postId).updateData([
             "appliedBy": FieldValue.arrayUnion([uid])
+        ])
+        
+        ref.collection("Users").document(uid).updateData([
+            "appliedTo": FieldValue.arrayUnion([postId])
         ])
         
         appliedStatus = !appliedStatus
@@ -243,24 +247,35 @@ class PostViewModel : ObservableObject{
         
     }
     
-    func unapply(postId: String){
+    func withdrawApplication(postId: String){
         
         let uid = Auth.auth().currentUser!.uid
-        let temp = ref.collection("Projects").document(postId)
         
-        temp.updateData([
+        ref.collection("Users").document(uid).updateData([
+            "appliedTo": FieldValue.arrayRemove([postId])
+        ])
+        
+        ref.collection("Projects").document(postId).updateData([
             "appliedBy": FieldValue.arrayRemove([uid])
         ])
+        
+        ref.collection("Applications").whereField("postId", isEqualTo: postId).getDocuments() { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in QuerySnapshot!.documents {
+                    document.reference.delete()
+                }
+            }
+        }
         
         appliedStatus = !appliedStatus
      
     }
     
     func getUserString(postId: String, completion: @escaping (String?) -> Void) {
-    
-        let temp = ref.collection("Projects").document(postId)
         
-        temp.getDocument { (document, error) in
+        ref.collection("Projects").document(postId).getDocument { (document, error) in
             if let document = document, document.exists {
                 let property = document.get("userString") as! String
                 completion(property)
@@ -273,9 +288,7 @@ class PostViewModel : ObservableObject{
     
     func getApplicantName(completion: @escaping (String?) -> Void) {
         
-        let temp = ref.collection("Users").document(uid)
-        
-        temp.getDocument { (document, error) in
+        ref.collection("Users").document(uid).getDocument { (document, error) in
             
             if let document = document, document.exists {
                 let property = document.get("username") as! String
@@ -304,6 +317,25 @@ class PostViewModel : ObservableObject{
             }
             
         }
+    }
+    
+    func appliedContains(id: String) -> Bool {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("Users").document(uid).getDocument {
+            (document, error) in
+            if let document = document {
+                self.applied_array = document["appliedTo"] as? Array ?? [""]
+            }
+        }
+        
+        if self.applied_array.contains(id) {
+            return true
+        } else {
+            return false
+        }
+        
     }
     
 //    func getPositionApplied(postId: String, completion @escaping (String?) -> Void) {
