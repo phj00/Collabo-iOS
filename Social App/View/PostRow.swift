@@ -79,14 +79,14 @@ struct PostRow: View {
                 }
             }.padding(.bottom, 5)
             
-            HStack(spacing: 10){
-                
-                Text(post.user.company)
-                    .fontWeight(.bold)
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
-                
-            }
+//            HStack(spacing: 10){
+//
+//                Text(post.user.company)
+//                    .fontWeight(.bold)
+//                    .font(.system(size: 18))
+//                    .foregroundColor(.white)
+//
+//            }
             
             HStack(spacing: 10){
                 

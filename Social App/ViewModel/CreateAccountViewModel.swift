@@ -20,7 +20,10 @@ class CreateAccountViewModel : ObservableObject {
     @Published var error = false
     @Published var errorMsg = ""
     
-    @Published var isLoading = false
+    @Published var isLoadingCA = false
+    @Published var createDone = false
+    
+    @Published var id = ""
     
     func createNewAccount(){
         self.doCreateAccount.toggle()
@@ -28,7 +31,9 @@ class CreateAccountViewModel : ObservableObject {
     }
     
     func createAccount(){
-        self.isLoading = true
+        
+        print("first: " ,Auth.auth().currentUser!.uid)
+        
         
         Auth.auth().createUser(withEmail: self.email, password: self.password){ (res, error) in
             
@@ -52,15 +57,22 @@ class CreateAccountViewModel : ObservableObject {
                 }
                 
                 self.error = true
-                self.isLoading = false
+                self.isLoadingCA = false
+                self.createDone = true
                 return
             }
             
+            print("hi : ", self.isLoadingCA)
             self.registerUser.toggle()
             self.doCreateAccount.toggle()
             
         }
         
+        self.id = Auth.auth().currentUser!.uid
+        print("cre: ", id)
+    
+        
     }
+    
     
 }

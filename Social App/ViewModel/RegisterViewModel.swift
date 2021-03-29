@@ -17,12 +17,24 @@ class RegisterViewModel : ObservableObject{
     @Published var NewAccLogIn = false
     @AppStorage("current_status") var status = false
     
-    func register(){
+    
+    @Published var email = ""
+    @Published var password = ""
+    
+    @Published var doCreateAccount = false
+    
+    @Published var registerUser = false
+    
+    @Published var error = false
+    @Published var errorMsg = ""
+    
+    @Published var isLoadingCA = false
+    
+    func register(uid: String){
         
         isLoading = true
         // setting User Data To Firestore....
-        
-        let uid = Auth.auth().currentUser!.uid
+        print(uid)
         
         UploadImage(imageData: image_Data, path: "profile_Photos") { (url) in
             
@@ -32,7 +44,7 @@ class RegisterViewModel : ObservableObject{
                 "imageurl": url,
                 "username": self.name,
                 "school": self.school,
-                "company": self.company,
+//                "company": self.company,
                 "bio": self.bio,
                 "dateCreated": Date(),
                 "savedPosts": self.savedPosts
@@ -49,5 +61,7 @@ class RegisterViewModel : ObservableObject{
                 self.NewAccLogIn.toggle()
             }
         }
+//        print("reg : " , self.isLoading)
     }
+    
 }

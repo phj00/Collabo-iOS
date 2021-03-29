@@ -81,8 +81,10 @@ struct Login: View {
             //    .fontWeight(.bold)
             //    .padding()
             
-            Button(action: createAccountData.createNewAccount, label: {
-                Text("Create a New Account here")
+            Button(action: {
+                createAccountData.createNewAccount()
+            }, label: {
+                Text("Create Account")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)
@@ -95,24 +97,14 @@ struct Login: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
-//        .fullScreenCover(isPresented: $loginData.registerUser, content: {
-//            
-//            Register()
-//
-//        })
-        EmptyView().fullScreenCover(isPresented: $loginData.registerUser, content: {
-            
+        
+    
+        .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
+
             Register()
 
         })
-        EmptyView().fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
-            
-            CreateAccount()
-        })
-        EmptyView().fullScreenCover(isPresented: $registerData.NewAccLogIn, content: {
-            
-            Home()
-        })
+        
         
         
 //        if (createAccountData.doCreateAccount){

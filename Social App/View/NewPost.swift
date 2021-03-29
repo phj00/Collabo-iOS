@@ -80,12 +80,12 @@ struct NewPost: View {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
-            TextEditor(text: $newPostData.positionWantedTxt)
-                .cornerRadius(15)
-                //.background(Color(.clear))
-                .padding()
-                .opacity(newPostData.isPosting ? 0.5 : 1)
-                .disabled(newPostData.isPosting ? true : false)
+//            TextEditor(text: $newPostData.positionWantedTxt)
+//                .cornerRadius(15)
+//                //.background(Color(.clear))
+//                .padding()
+//                .opacity(newPostData.isPosting ? 0.5 : 1)
+//                .disabled(newPostData.isPosting ? true : false)
             
             
             
