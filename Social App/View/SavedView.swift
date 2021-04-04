@@ -10,6 +10,7 @@ import SwiftUI
 struct SavedView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var postData = PostViewModel()
+    @StateObject var profileData = ProfileViewModel()
     
     var body: some View {
         
@@ -37,7 +38,7 @@ struct SavedView: View {
                         ForEach(postData.Projects){post in
                             
                             if postData.savedContains(id: post.id){
-                                PostRow(post: post, postData: postData)
+                                PostRow(post: post, postData: postData, profileData: profileData)
                             }
                         }
                     }

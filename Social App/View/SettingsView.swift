@@ -5,6 +5,7 @@ struct SettingsView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var settingsData = SettingsViewModel()
     @StateObject var postData = PostViewModel()
+    @StateObject var profileData = ProfileViewModel()
     var body: some View {
         
         ScrollView{
@@ -122,7 +123,7 @@ struct SettingsView: View {
                             
                             ForEach(postData.Projects){post in
                                 if post.userString == postData.uid {
-                                    PostRow(post: post,postData: postData)
+                                    PostRow(post: post,postData: postData, profileData: profileData)
                                 }
                             }
                         }

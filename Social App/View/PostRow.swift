@@ -6,6 +6,7 @@ struct PostRow: View {
     
     var post : PostModel
     @ObservedObject var postData : PostViewModel
+    @ObservedObject var profileData : ProfileViewModel
     let uid = Auth.auth().currentUser!.uid
     
     var body: some View {
@@ -13,16 +14,25 @@ struct PostRow: View {
         VStack(alignment: .leading){
             
             HStack(spacing: 10){
-                
                 WebImage(url: URL(string: post.user.pic)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                 
-                Text(post.user.username)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
+                //first toggle, then checkuser, then display user
+                
+                Button(action: {
+                    profileData.currentView.toggle();
+                    profileData.showProf(userString: post.userString)
+                    profileData.getUserString(userString: post.userString)
+                }, label: {
+                    Text(post.user.username)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                })
+                
+
                 
                 Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
                     if postData.appliedContains(id: post.id) == false {
@@ -141,6 +151,16 @@ struct PostRow: View {
         .padding()
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
+        
+
+        if(profileData.currentView) {
+            if(post.userString == profileData.tempUserString) {
+                ProfileView(userString : post.userString, profileData : profileData)
+                    .fullScreenCover(isPresented: $profileData.tempBool) {
+                        ProfileView(userString : post.userString, profileData: profileData)
+                    }
+            }
+        }
     }
     
 }

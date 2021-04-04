@@ -8,6 +8,7 @@ class RegisterViewModel : ObservableObject{
     @Published var school = ""
     @Published var savedPosts = [String]()
     @Published var appliedTo = [String]()
+    @Published var currentView = false
     
     @Published var image_Data = Data(count: 0)
     @Published var picker = false
@@ -34,7 +35,8 @@ class RegisterViewModel : ObservableObject{
                 "bio": self.bio,
                 "dateCreated": Date(),
                 "savedPosts": self.savedPosts,
-                "appliedTo": self.appliedTo
+                "appliedTo": self.appliedTo,
+                "currentView": self.currentView
                 
             ]) { (err) in
              
