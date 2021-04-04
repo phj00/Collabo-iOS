@@ -20,11 +20,18 @@ struct PostRow: View {
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                 
-                Button(action: {postData.showProfile.toggle(); profileData.showProf(userString: post.userString)}, label: {
+                //first toggle, then checkuser, then display user
+                
+                Button(action: {
+                    profileData.currentView.toggle();
+                    profileData.showProf(userString: post.userString)
+                    profileData.getUserString(userString: post.userString)
+                }, label: {
                     Text(post.user.username)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                 })
+                
 
                 
                 Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
@@ -145,11 +152,14 @@ struct PostRow: View {
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
         
-        if(postData.showProfile) {
-            ProfileView(userString : post.userString, profileData : profileData)
-                .fullScreenCover(isPresented: $postData.showProfile) {
-                    ProfileView(userString : post.userString, profileData: profileData)
-                }
+
+        if(profileData.currentView) {
+            if(post.userString == profileData.tempUserString) {
+                ProfileView(userString : post.userString, profileData : profileData)
+                    .fullScreenCover(isPresented: $profileData.tempBool) {
+                        ProfileView(userString : post.userString, profileData: profileData)
+                    }
+            }
         }
     }
     

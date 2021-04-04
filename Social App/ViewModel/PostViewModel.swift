@@ -13,8 +13,6 @@ class PostViewModel : ObservableObject{
     @Published var applied_by = [String]()
     @Published var applied_array = [String]()
     @Published var uid = Auth.auth().currentUser!.uid
-    @Published var showProfile = false
-
     
     init() {
         
