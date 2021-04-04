@@ -6,35 +6,23 @@ class RegisterViewModel : ObservableObject{
     @Published var name = ""
     @Published var bio = ""
     @Published var school = ""
-    @Published var company = ""
     @Published var savedPosts = [String]()
+    @Published var appliedTo = [String]()
     
     @Published var image_Data = Data(count: 0)
     @Published var picker = false
     let ref = Firestore.firestore()
     // Loading View...
     @Published var isLoading = false
-    @Published var NewAccLogIn = false
+    @Published var isRegistered = false
     @AppStorage("current_status") var status = false
     
-    
-    @Published var email = ""
-    @Published var password = ""
-    
-    @Published var doCreateAccount = false
-    
-    @Published var registerUser = false
-    
-    @Published var error = false
-    @Published var errorMsg = ""
-    
-    @Published var isLoadingCA = false
-    
-    func register(uid: String){
+    func register(){
         
         isLoading = true
         // setting User Data To Firestore....
-        print(uid)
+        
+        let uid = Auth.auth().currentUser!.uid
         
         UploadImage(imageData: image_Data, path: "profile_Photos") { (url) in
             
@@ -44,10 +32,10 @@ class RegisterViewModel : ObservableObject{
                 "imageurl": url,
                 "username": self.name,
                 "school": self.school,
-//                "company": self.company,
                 "bio": self.bio,
                 "dateCreated": Date(),
-                "savedPosts": self.savedPosts
+                "savedPosts": self.savedPosts,
+                "appliedTo": self.appliedTo
                 
             ]) { (err) in
              
@@ -58,10 +46,8 @@ class RegisterViewModel : ObservableObject{
                 self.isLoading = false
                 // success means settings status as true...
                 self.status = true
-                self.NewAccLogIn.toggle()
+                self.isRegistered = true
             }
         }
-//        print("reg : " , self.isLoading)
     }
-    
 }

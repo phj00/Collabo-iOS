@@ -4,7 +4,6 @@ struct Login: View {
     
     @StateObject var loginData = LoginViewModel()
     @StateObject var createAccountData = CreateAccountViewModel()
-    @StateObject var registerData = RegisterViewModel()
     
     var body: some View {
         VStack{
@@ -81,10 +80,8 @@ struct Login: View {
             //    .fontWeight(.bold)
             //    .padding()
             
-            Button(action: {
-                createAccountData.createNewAccount()
-            }, label: {
-                Text("Create Account")
+            Button(action: createAccountData.createNewAccount, label: {
+                Text("Create a New Account here")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)
@@ -97,26 +94,26 @@ struct Login: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
-        
-    
         .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
-
-            Register()
+            
+            CreateAccount(isPresented: $createAccountData.doCreateAccount)
 
         })
+//        .fullScreenCover(isPresented: $createAccountData.registerUser, content: {
+//            Register(
+//        })
         
-        
-        
-//        if (createAccountData.doCreateAccount){
-//
+//        if(createAccountData.doCreateAccount){
 //            CreateAccount()
-//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .bottom)
-//                .edgesIgnoringSafeArea(.all)
-//
 //        }
-    
         
     }
+    
+    func toggleDoCreateAccount() {
+        
+        createAccountData.doCreateAccount = false
+        
+    }
+    
 }
-
 
