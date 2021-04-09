@@ -12,7 +12,6 @@ func fetchUser(uid: String,completion: @escaping (UserModel) -> ()){
         
         let username = user.data()?["username"] as! String
         let school = user.data()?["school"] as! String
-//        let company = user.data()?["company"] as! String
         let pic = user.data()?["imageurl"] as! String
         let bio = user.data()?["bio"] as! String
         let uid = user.documentID

@@ -99,14 +99,7 @@ struct Login: View {
             CreateAccount(isPresented: $createAccountData.doCreateAccount)
 
         })
-//        .fullScreenCover(isPresented: $createAccountData.registerUser, content: {
-//            Register(
-//        })
-        
-//        if(createAccountData.doCreateAccount){
-//            CreateAccount()
-//        }
-        
+
     }
     
     func toggleDoCreateAccount() {
