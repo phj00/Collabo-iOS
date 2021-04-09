@@ -10,7 +10,7 @@ struct PostView: View {
             
             HStack{
                 
-                Text("Projects")
+                Text("Postings")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
@@ -30,17 +30,17 @@ struct PostView: View {
             .background(Color("bg"))
             .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
             
-            if postData.Projects.isEmpty{
+            if postData.Postings.isEmpty{
                 
                 Spacer(minLength: 0)
                 
-                if postData.noProjects{
+                if postData.noPostings{
                     
-                    Text("No Projects to View")
+                    Text("No Posts to View")
                 }
                 else{
                     
-                    Text("No Projects to View")
+                    Text("No Posts to View")
                 }
                 
                 Spacer(minLength: 0)
@@ -51,7 +51,7 @@ struct PostView: View {
                     
                     VStack(spacing: 15){
                         
-                        ForEach(postData.Projects){post in
+                        ForEach(postData.Postings){post in
                             
                             PostRow(post: post,postData: postData, profileData: profileData)
                         }

@@ -3,8 +3,8 @@ import Firebase
 
 class PostViewModel : ObservableObject{
     
-    @Published var Projects : [PostModel] = []
-    @Published var noProjects = false
+    @Published var Postings : [PostModel] = []
+    @Published var noPostings = false
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
@@ -23,20 +23,20 @@ class PostViewModel : ObservableObject{
     
     init() {
         
-        getAllProjects()
+        getAllPostings()
     }
     
-    func getAllProjects(){
+    func getAllPostings(){
         
-        ref.collection("Projects").addSnapshotListener { (snap, err) in
+        ref.collection("Postings").addSnapshotListener { (snap, err) in
             guard let docs = snap else{
-                self.noProjects = true
+                self.noPostings = true
                 return
             }
             
             if docs.documentChanges.isEmpty{
                 
-                self.noProjects = true
+                self.noPostings = true
                 return
             }
             
@@ -61,11 +61,11 @@ class PostViewModel : ObservableObject{
                     fetchUser(uid: userRef.documentID) { (user) in
                         
 
-                        self.Projects.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
+                        self.Postings.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
 
                         // Sorting All Model..
                         // you can also doi while reading docs...
-                        self.Projects.sort { (p1, p2) -> Bool in
+                        self.Postings.sort { (p1, p2) -> Bool in
                             return p1.time > p2.time
                         }
                     }
@@ -77,7 +77,7 @@ class PostViewModel : ObservableObject{
                     
                     let id = doc.document.documentID
                     
-                    self.Projects.removeAll { (post) -> Bool in
+                    self.Postings.removeAll { (post) -> Bool in
                         return post.id == id
                     }
                 }
@@ -93,7 +93,7 @@ class PostViewModel : ObservableObject{
                     let title = doc.document.data()["title"] as! String
                     //let category = doc.document.data()["category"] as! String
                     
-                    let index = self.Projects.firstIndex { (post) -> Bool in
+                    let index = self.Postings.firstIndex { (post) -> Bool in
                         return post.id == id
                     } ?? -1
                     
@@ -102,7 +102,7 @@ class PostViewModel : ObservableObject{
                     
                     if index != -1{
                         
-                        self.Projects[index].title = title
+                        self.Postings[index].title = title
                         //self.Projects[index].category = category
                         self.updateId = ""
                     }
@@ -129,7 +129,7 @@ class PostViewModel : ObservableObject{
             }
         }
         
-        ref.collection("Projects").document(id).delete { (err) in
+        ref.collection("Postings").document(id).delete { (err) in
             if err != nil{
                 print(err!.localizedDescription)
                 return
@@ -213,7 +213,7 @@ class PostViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
 
-        ref.collection("Projects").document(postId).updateData([
+        ref.collection("Postings").document(postId).updateData([
             "appliedBy": FieldValue.arrayUnion([uid])
         ])
 
@@ -265,7 +265,7 @@ class PostViewModel : ObservableObject{
             "appliedTo": FieldValue.arrayRemove([postId])
         ])
         
-        ref.collection("Projects").document(postId).updateData([
+        ref.collection("Postings").document(postId).updateData([
             "appliedBy": FieldValue.arrayRemove([uid])
         ])
         
@@ -286,7 +286,7 @@ class PostViewModel : ObservableObject{
 
     func getUserString(postId: String, completion: @escaping (String?) -> Void) {
         
-        ref.collection("Projects").document(postId).getDocument { (document, error) in
+        ref.collection("Postings").document(postId).getDocument { (document, error) in
             if let document = document, document.exists {
                 let property = document.get("userString") as! String
                 completion(property)

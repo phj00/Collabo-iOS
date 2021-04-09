@@ -16,7 +16,7 @@ struct SavedView: View {
         
         VStack{
             HStack{
-                Text("Saved Projects")
+                Text("Saved Posts")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
@@ -35,7 +35,7 @@ struct SavedView: View {
                     
                     VStack(spacing: 15){
                         
-                        ForEach(postData.Projects){post in
+                        ForEach(postData.Postings){post in
                             
                             if postData.savedContains(id: post.id){
                                 PostRow(post: post, postData: postData, profileData: profileData)
@@ -48,7 +48,7 @@ struct SavedView: View {
             } else {
                 Spacer(minLength: 0)
                 
-                Text("No Projects to View")
+                Text("No Posts to View")
 
                 Spacer(minLength: 0)
             }

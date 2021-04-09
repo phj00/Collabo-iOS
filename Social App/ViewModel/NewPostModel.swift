@@ -26,7 +26,7 @@ class NewPostModel : ObservableObject{
             
             // Updating Data...
             
-            ref.collection("Projects").document(updateId).updateData([
+            ref.collection("Postings").document(updateId).updateData([
             
                 "title": postTxt,
                 "category": postCategory
@@ -43,7 +43,7 @@ class NewPostModel : ObservableObject{
         
         if img_Data.count == 0{
             
-            ref.collection("Projects").document().setData([
+            ref.collection("Postings").document().setData([
                 
                 "title": self.postTxt,
                 "category": self.postCategory,
@@ -74,7 +74,7 @@ class NewPostModel : ObservableObject{
             
             UploadImage(imageData: img_Data, path: "post_Pics") { (url) in
                 
-                ref.collection("Projects").document().setData([
+                ref.collection("Postings").document().setData([
                     
                     "title": self.postTxt,
                     "category": self.postCategory,

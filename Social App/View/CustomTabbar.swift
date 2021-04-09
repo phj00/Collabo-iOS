@@ -6,7 +6,7 @@ struct CustomTabbar: View {
         
         HStack(spacing: 53){
             
-            TabButton(title: "Projects", selectedTab: $selectedTab)
+            TabButton(title: "Posts", selectedTab: $selectedTab)
             
             TabButton(title: "Saved", selectedTab: $selectedTab)
             
@@ -32,7 +32,7 @@ struct TabButton : View {
             
             VStack(spacing: 5){
                 
-                if title == "Projects" {
+                if title == "Posts" {
                     Image(systemName: "note.text")
                 }
                 if title == "Saved"{

@@ -121,7 +121,7 @@ struct SettingsView: View {
                         
                         VStack(spacing: 15){
                             
-                            ForEach(postData.Projects){post in
+                            ForEach(postData.Postings){post in
                                 if post.userString == postData.uid {
                                     PostRow(post: post,postData: postData, profileData: profileData)
                                 }

@@ -25,7 +25,7 @@ struct NewPost: View {
                 
                 if updateId == ""{
                     
-                    // Only FOr New Projects....
+                    // Only FOr New Posts....
                     Button(action: {newPostData.picker.toggle()}) {
                         
                         Image(systemName: "photo.fill")
@@ -63,7 +63,7 @@ struct NewPost: View {
                 .opacity(newPostData.isPosting ? 0.5 : 1)
                 .disabled(newPostData.isPosting ? true : false)
             
-            Text("     Project Title:")
+            Text("     Post Title:")
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
