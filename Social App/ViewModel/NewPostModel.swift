@@ -5,6 +5,7 @@ class NewPostModel : ObservableObject{
     
     @Published var postTxt = ""
     @Published var postCategory = ""
+    @Published var positionWantedTxt = ""
     // Image Picker...
     @Published var picker = false
     @Published var img_Data = Data(count: 0)
@@ -51,6 +52,8 @@ class NewPostModel : ObservableObject{
                 "time": Date(),
                 "userString": uid,
                 "appliedBy": [String]()
+//                "positionWanted": self.positionWantedTxt
+
                 
             ]) { (err) in
                 
@@ -80,6 +83,8 @@ class NewPostModel : ObservableObject{
                     "time": Date(),
                     "userString": self.uid,
                     "appliedBy": [String]()
+//                    "positionWanted": self.positionWantedTxt
+                    
                     
                 ]) { (err) in
                     

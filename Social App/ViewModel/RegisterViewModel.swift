@@ -9,12 +9,14 @@ class RegisterViewModel : ObservableObject{
     @Published var savedPosts = [String]()
     @Published var appliedTo = [String]()
     @Published var currentView = false
+
     
     @Published var image_Data = Data(count: 0)
     @Published var picker = false
     let ref = Firestore.firestore()
     // Loading View...
     @Published var isLoading = false
+    @Published var isRegistered = false
     @AppStorage("current_status") var status = false
     
     func register(){
@@ -37,6 +39,7 @@ class RegisterViewModel : ObservableObject{
                 "savedPosts": self.savedPosts,
                 "appliedTo": self.appliedTo,
                 "currentView": self.currentView
+
                 
             ]) { (err) in
              
@@ -47,6 +50,7 @@ class RegisterViewModel : ObservableObject{
                 self.isLoading = false
                 // success means settings status as true...
                 self.status = true
+                self.isRegistered = true
             }
         }
     }

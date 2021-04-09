@@ -4,7 +4,6 @@
 //
 //  Created by Ryan Koo on 1/3/21.
 //
-
 import SwiftUI
 import Firebase
 

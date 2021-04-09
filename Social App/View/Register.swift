@@ -3,6 +3,7 @@ import SwiftUI
 struct Register: View {
     
     @StateObject var registerData = RegisterViewModel()
+    @Binding var isPresented : Bool
     
     var body: some View {
         VStack{
@@ -83,7 +84,10 @@ struct Register: View {
             }
             else{
                 
-                Button(action: registerData.register, label: {
+                Button(action: {
+                    registerData.register()
+                    isPresented = false
+                }, label: {
                     Text("Register")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
@@ -102,7 +106,9 @@ struct Register: View {
         .sheet(isPresented: $registerData.picker, content: {
             ImagePicker(picker: $registerData.picker, img_Data: $registerData.image_Data)
         })
+//        .sheet(isPresented: $registerData.isRegistered, content: {
+//            Home()
+//        })
         .preferredColorScheme(.dark)
     }
 }
-

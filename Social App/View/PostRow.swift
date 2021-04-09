@@ -13,35 +13,26 @@ struct PostRow: View {
         
         VStack(alignment: .leading){
             
+            
             HStack(spacing: 10){
-                WebImage(url: URL(string: post.user.pic)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
+   // head
                 
-                //first toggle, then checkuser, then display user
-                
-                Button(action: {
-                    profileData.currentView.toggle();
-                    profileData.showProf(userString: post.userString)
-                    profileData.getUserString(userString: post.userString)
-                }, label: {
-                    Text(post.user.username)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                })
-                
-
+                Text(post.title)
+                    .font(.system(size: 24))
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
                 
                 Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
                     if postData.appliedContains(id: post.id) == false {
+
                         Text("Apply")
                             .font(.caption)
+                            .font(.system(size: 16))
                             .fontWeight(.bold)
                     } else if postData.appliedContains(id: post.id) == true {
                         Text("Withdraw")
                             .font(.caption)
+                            .font(.system(size: 16))
                             .fontWeight(.bold)
                     }
                 }
@@ -64,6 +55,12 @@ struct PostRow: View {
                             Text("Delete")
                         }
                         
+//                        Button(action: {postData.getReachOut(id: post.id)}) {
+//
+//                            Text("List of Reach out's")
+//
+//                        }
+                        
                     }, label: {
                         
                         Image("menu")
@@ -73,6 +70,37 @@ struct PostRow: View {
                             .foregroundColor(.white)
                     })
                 }
+            }.padding(.bottom, 5)
+            
+//            HStack(spacing: 10){
+//
+//                Text(post.user.company)
+//                    .fontWeight(.bold)
+//                    .font(.system(size: 18))
+//                    .foregroundColor(.white)
+//
+//            }
+            
+            HStack(spacing: 10){
+                
+                WebImage(url: URL(string: post.user.pic)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                
+                //first toggle, then checkuser, then display user
+                
+                Button(action: {
+                    profileData.currentView.toggle();
+                    profileData.showProf(userString: post.userString)
+                    profileData.getUserString(userString: post.userString)
+                }, label: {
+                    Text(post.user.username)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                })
+                
             }
             
             if post.pic != ""{
@@ -86,23 +114,26 @@ struct PostRow: View {
             }
             
             HStack{
-                if post.pic != ""{
-                    Text(post.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxHeight: 175)
-                        .lineLimit(7)
-                        .fixedSize(horizontal: false, vertical: true)
 
-                }else{
-                    Text(post.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxHeight: 200)
-                        .lineLimit(10)
-                        .fixedSize(horizontal: false, vertical: true)
+//                if post.pic != ""{
+//                    Text(post.title)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .frame(maxHeight: 175)
+//                        .lineLimit(7)
+//                        .fixedSize(horizontal: false, vertical: true)
+//
+//                }else{
+//                    Text(post.title)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .frame(maxHeight: 200)
+//                        .lineLimit(10)
+//                        .fixedSize(horizontal: false, vertical: true)
+//
+//                }
 
-                }
+
                 
                 Spacer(minLength: 0)
             }
@@ -142,9 +173,13 @@ struct PostRow: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     
+                    
                 }
                 
             }
+            .frame(minHeight: 0,
+                   maxHeight: 10
+            )
             .padding(.vertical, 5)
             
         }

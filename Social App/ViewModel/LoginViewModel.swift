@@ -15,6 +15,8 @@ class LoginViewModel : ObservableObject{
     @Published var errorMsg = ""
     @Published var error = false
     
+    @Published var isLoggedin = false
+    
     @Published var registerUser = false
     @AppStorage("current_status") var status = false
     
@@ -34,6 +36,7 @@ class LoginViewModel : ObservableObject{
                     self.error.toggle()
                     self.emailNotRegistered = true
                     self.isLoading = false
+                    self.isLoggedin.toggle()
                     return
                 }
                 print("hello")

@@ -94,14 +94,17 @@ struct Login: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         
-        .fullScreenCover(isPresented: $loginData.registerUser, content: {
+        .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
             
-            Register()
+            CreateAccount(isPresented: $createAccountData.doCreateAccount)
+
         })
+
+    }
+    
+    func toggleDoCreateAccount() {
         
-        if(createAccountData.doCreateAccount){
-            CreateAccount()
-        }
+        createAccountData.doCreateAccount = false
         
     }
     

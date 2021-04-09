@@ -26,7 +26,7 @@
 		AD049C8D250FA7270097514A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C8C250FA7270097514A /* Login.swift */; };
 		AD049C8F250FA78C0097514A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C8E250FA78C0097514A /* LoginViewModel.swift */; };
 		AD049C91250FAE280097514A /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C90250FAE280097514A /* Register.swift */; };
-		AD049C93250FAF200097514A /* RegsiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C92250FAF200097514A /* RegsiterViewModel.swift */; };
+		AD049C93250FAF200097514A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C92250FAF200097514A /* RegisterViewModel.swift */; };
 		AD049C97250FB2970097514A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C96250FB2970097514A /* ImagePicker.swift */; };
 		AD049C99250FB6390097514A /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C98250FB6390097514A /* UploadImage.swift */; };
 		AD049C9B250FB85A0097514A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049C9A250FB85A0097514A /* Home.swift */; };
@@ -95,7 +95,7 @@
 		AD049C8C250FA7270097514A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		AD049C8E250FA78C0097514A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		AD049C90250FAE280097514A /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
-		AD049C92250FAF200097514A /* RegsiterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegsiterViewModel.swift; sourceTree = "<group>"; };
+		AD049C92250FAF200097514A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		AD049C96250FB2970097514A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		AD049C98250FB6390097514A /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		AD049C9A250FB85A0097514A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				AD049C8E250FA78C0097514A /* LoginViewModel.swift */,
-				AD049C92250FAF200097514A /* RegsiterViewModel.swift */,
+				AD049C92250FAF200097514A /* RegisterViewModel.swift */,
 				AD83FF0D251106C60030245B /* SettingsViewModel.swift */,
 				AD9ADF5825125A5900837EBF /* PostViewModel.swift */,
 				AD9ADF6225126BE100837EBF /* NewPostModel.swift */,
@@ -551,9 +551,13 @@
 				AD049C91250FAE280097514A /* Register.swift in Sources */,
 				AD83FF06251104700030245B /* PostView.swift in Sources */,
 				AD9ADF5F25125E1100837EBF /* PostRow.swift in Sources */,
+
 				3D89CC822602A24D0038A6E9 /* ProfileViewModel.swift in Sources */,
 				6F3544C725D28FE5005419C7 /* ApplicationsView.swift in Sources */,
 				AD049C93250FAF200097514A /* RegsiterViewModel.swift in Sources */,
+
+				AD049C93250FAF200097514A /* RegisterViewModel.swift in Sources */,
+
 				6FCA4B0E25A2C58000282FC3 /* CreateAccountViewModel.swift in Sources */,
 				AD83FF0A2511048E0030245B /* SettingsView.swift in Sources */,
 				AD9ADF5D25125B9D00837EBF /* FetchUser.swift in Sources */,
@@ -716,6 +720,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Social App/Preview Content\"";
+				DEVELOPMENT_TEAM = U4CQ757A7Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Social App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -738,6 +743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Social App/Preview Content\"";
+				DEVELOPMENT_TEAM = U4CQ757A7Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Social App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
