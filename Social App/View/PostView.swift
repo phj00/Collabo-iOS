@@ -65,6 +65,11 @@ struct PostView: View {
             
             NewPost(updateId : $postData.updateId)
         }
+        .fullScreenCover(isPresented: $profileData.currentView) {
+            
+            ProfileView(userString : profileData.tempUserString, profileData: profileData)
+            
+        }
     }
 }
 
