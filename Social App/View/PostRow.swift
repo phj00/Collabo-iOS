@@ -186,16 +186,6 @@ struct PostRow: View {
         .padding()
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
-        
-
-        if(profileData.currentView) {
-            if(post.userString == profileData.tempUserString) {
-                ProfileView(userString : post.userString, profileData : profileData)
-                    .fullScreenCover(isPresented: $profileData.tempBool) {
-                        ProfileView(userString : post.userString, profileData: profileData)
-                    }
-            }
-        }
     }
     
 }
