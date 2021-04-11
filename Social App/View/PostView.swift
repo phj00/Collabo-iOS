@@ -61,11 +61,12 @@ struct PostView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $postData.newPost) {
+        
+        EmptyView().fullScreenCover(isPresented: $postData.newPost) {
             
             NewPost(updateId : $postData.updateId)
         }
-        .fullScreenCover(isPresented: $profileData.currentView) {
+        EmptyView().fullScreenCover(isPresented: $profileData.currentView) {
             
             ProfileView(userString : profileData.tempUserString, profileData: profileData)
             
