@@ -1,5 +1,6 @@
 import SwiftUI
 import SDWebImageSwiftUI
+import Firebase
 
 struct SettingsView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
@@ -122,8 +123,11 @@ struct SettingsView: View {
                         VStack(spacing: 15){
                             
                             ForEach(postData.Postings){post in
-                                if post.userString == postData.uid {
+    
+                                if(post.userString == Auth.auth().currentUser!.uid){
+                                    
                                     PostRow(post: post,postData: postData, profileData: profileData)
+                                    
                                 }
                             }
                         }
