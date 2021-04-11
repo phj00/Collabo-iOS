@@ -11,7 +11,10 @@ struct ProfileView: View {
         ScrollView{
             VStack{
                 HStack{
-                    Button(action: {profileData.currentView.toggle()}) {
+                    Button(action: {
+                        profileData.currentView.toggle();
+                        profileData.setUserString(userString: "")
+                    }) {
                         Image(systemName: "arrow.left.circle")
                             .font(.title)
                             .foregroundColor(Color("blue"))

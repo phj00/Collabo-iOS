@@ -19,13 +19,15 @@ class ProfileViewModel : ObservableObject{
             
         }
     }
-
-    func getUserString(userString : String) {
-        
+    
+    func setUserString(userString : String) {
         self.tempUserString = userString
+    }
+
+    func getUserString() -> String {
+        
+        return self.tempUserString
         
     }
-    
-
 }
 
