@@ -38,12 +38,13 @@ struct PostRow: View {
 //                    }
 //                }
                 
-                Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id)}, label: {
+                Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}, label: {
                        Text("Apply")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                       
+                        .font(.caption)
+                        .font(.system(size: 16))
+                        .fontWeight(.bold)
                 })
+                
                 
                 
                 Spacer(minLength: 0)

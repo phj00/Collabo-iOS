@@ -74,7 +74,7 @@ struct PostView: View {
         }
         EmptyView().fullScreenCover(isPresented: $applyData.currentView) {
             
-            ApplyView(postId : applyData.postId, applyData: applyData)
+            ApplyView(postId : applyData.postId, position : applyData.position, applyData: applyData)
             
         }
     }

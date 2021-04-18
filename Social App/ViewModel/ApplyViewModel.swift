@@ -14,13 +14,20 @@ class ApplyViewModel : ObservableObject{
     
     @Published var currentView = false
     @Published var postId = ""
+    @Published var position = ""
+    @Published var applicationMessage = ""
     
     func setPostId(postId : String) {
         self.postId = postId
     }
     
+    func setPostPosition(title : String) {
+        self.position = title
+    }
+    
     func applyTo(postId: String){
         
+        let ref = Firestore.firestore()
         let uid = Auth.auth().currentUser!.uid
 
         ref.collection("Postings").document(postId).updateData([
@@ -42,7 +49,7 @@ class ApplyViewModel : ObservableObject{
                     "applicantUid": uid,
                     "applicantName": property,
                     "postId": postId,
-                    "applicationMessage": "Hi, my name is \(property) and I would like to talk with you more about your project."
+                    "applicationMessage": self.applicationMessage
                 ])
             } else {
                 print("Error")
@@ -121,7 +128,6 @@ class ApplyViewModel : ObservableObject{
     func getApplicantPhoto(completion: @escaping (String?) -> Void) {
         
         let temp = ref.collection("Users").document(uid)
-        
 
         temp.getDocument { (document, error) in
             

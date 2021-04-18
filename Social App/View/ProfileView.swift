@@ -68,8 +68,8 @@ struct ProfileView: View {
                     .frame(width: UIScreen.main.bounds.width - 100)
                     .background(Color("blue"))
                     .clipShape(Capsule())
-                .padding()
-                .padding(.top,10)
+                    .padding()
+                    .padding(.top,10)
                 
                 Spacer(minLength: 0)
             }
