@@ -8,4 +8,5 @@ struct UserModel {
     var uid : String
     var savedPosts : Array<String>
     var appliedTo: Array<String>
+    var connections : Array<String>
 }

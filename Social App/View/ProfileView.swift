@@ -1,10 +1,13 @@
 import SwiftUI
 import SDWebImageSwiftUI
+import Firebase
 
 struct ProfileView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
-    @State var userString: String
+    @StateObject var settingsData = SettingsViewModel()
+    @StateObject var postData = PostViewModel()
     @StateObject var profileData : ProfileViewModel
+    @State var userString: String
 
     var body: some View {
         
@@ -60,18 +63,81 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                // Connect Button...
-                Text("Connect With Me!")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color("blue"))
-                    .clipShape(Capsule())
-                .padding()
-                .padding(.top,10)
+//                // Connect Button...
+//                Text("Connect With Me!")
+//                    .foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .padding(.vertical)
+//                    .frame(width: UIScreen.main.bounds.width - 100)
+//                    .background(Color("blue"))
+//                    .clipShape(Capsule())
+//                .padding()
+//                .padding(.top,10)
+                if (profileData.uid != profileData.userInfo.uid) {
+                    Button(action: { if profileData.connectionContains(userString: profileData.userInfo.uid) == false {profileData.connectTo(userString: profileData.userInfo.uid)} else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {profileData.disconnectFrom(userString: profileData.userInfo.uid)}}) {
+                        if profileData.connectionContains(userString: profileData.userInfo.uid) == false {
+
+                            Text("Add connection")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .padding(.vertical)
+                                .frame(width: UIScreen.main.bounds.width - 100)
+                                .background(Color("blue"))
+                                .clipShape(Capsule())
+                                .padding()
+                                .padding(.top,10)
+                        } else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {
+                            Text("Connected!")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .padding(.vertical)
+                                .frame(width: UIScreen.main.bounds.width - 100)
+                                .background(Color("blue"))
+                                .clipShape(Capsule())
+                                .padding()
+                                .padding(.top,10)
+                        }
+                    }
+                } else {
+                    Button(action: settingsData.logOut, label: {
+                        Text("Log Out")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 100)
+                            .background(Color("blue"))
+                            .clipShape(Capsule())
+                    })
+                    .padding()
+                    .padding(.top,10)
+                }
+                
+                VStack{
+//                    Auth.auth().currentUser!.uid
+                    ScrollView{
+                        
+                        VStack(spacing: 15){
+                            
+                            Text(profileData.userInfo.username + "'s posts")
+                                .foregroundColor(.white)
+                            
+                            ForEach(postData.Postings){post in
+    
+                                if(post.userString == profileData.userInfo.uid){
+                                    
+                                    PostRow(post: post,postData: postData, profileData: profileData)
+                                    
+                                }
+                            }
+                        }
+                        .padding()
+                        .padding(.bottom,55)
+                    }
+                    
+                }
                 
                 Spacer(minLength: 0)
+                
             }
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))

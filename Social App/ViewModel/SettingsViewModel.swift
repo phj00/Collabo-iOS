@@ -3,7 +3,7 @@ import Firebase
 
 class SettingsViewModel : ObservableObject{
     
-    @Published var userInfo = UserModel(username: "", school: "", pic: "", bio: "", uid: "", savedPosts: [String](), appliedTo: [String]())
+    @Published var userInfo = UserModel(username: "", school: "", pic: "", bio: "", uid: "", savedPosts: [String](), appliedTo: [String](), connections: [String]())
     @AppStorage("current_status") var status = false
     
     // Image Picker For Updating Image...
