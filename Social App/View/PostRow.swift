@@ -7,6 +7,7 @@ struct PostRow: View {
     var post : PostModel
     @ObservedObject var postData : PostViewModel
     @ObservedObject var profileData : ProfileViewModel
+    @ObservedObject var applyData: ApplyViewModel
     let uid = Auth.auth().currentUser!.uid
     
     var body: some View {
@@ -22,20 +23,29 @@ struct PostRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
-                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
-                    if postData.appliedContains(id: post.id) == false {
-
-                        Text("Apply")
-                            .font(.caption)
-                            .font(.system(size: 16))
-                            .fontWeight(.bold)
-                    } else if postData.appliedContains(id: post.id) == true {
-                        Text("Withdraw")
-                            .font(.caption)
-                            .font(.system(size: 16))
-                            .fontWeight(.bold)
-                    }
-                }
+//                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
+//                    if postData.appliedContains(id: post.id) == false {
+//
+//                        Text("Apply")
+//                            .font(.caption)
+//                            .font(.system(size: 16))
+//                            .fontWeight(.bold)
+//                    } else if postData.appliedContains(id: post.id) == true {
+//                        Text("Withdraw")
+//                            .font(.caption)
+//                            .font(.system(size: 16))
+//                            .fontWeight(.bold)
+//                    }
+//                }
+                
+                Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}, label: {
+                       Text("Apply")
+                        .font(.caption)
+                        .font(.system(size: 16))
+                        .fontWeight(.bold)
+                })
+                
+                
                 
                 Spacer(minLength: 0)
                 

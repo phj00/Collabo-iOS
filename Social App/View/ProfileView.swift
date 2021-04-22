@@ -63,6 +63,18 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
+<<<<<<< HEAD
+                // Connect Button...
+                Text("Connect With Me!")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .padding(.vertical)
+                    .frame(width: UIScreen.main.bounds.width - 100)
+                    .background(Color("blue"))
+                    .clipShape(Capsule())
+                    .padding()
+                    .padding(.top,10)
+=======
 //                // Connect Button...
 //                Text("Connect With Me!")
 //                    .foregroundColor(.white)
@@ -135,6 +147,7 @@ struct ProfileView: View {
                     }
                     
                 }
+>>>>>>> main
                 
                 Spacer(minLength: 0)
                 
