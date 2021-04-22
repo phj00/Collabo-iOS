@@ -7,6 +7,7 @@ struct ProfileView: View {
     @StateObject var settingsData = SettingsViewModel()
     @StateObject var postData = PostViewModel()
     @StateObject var profileData : ProfileViewModel
+    @StateObject var applyData : ApplyViewModel
     @State var userString: String
 
     var body: some View {
@@ -63,18 +64,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-<<<<<<< HEAD
-                // Connect Button...
-                Text("Connect With Me!")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color("blue"))
-                    .clipShape(Capsule())
-                    .padding()
-                    .padding(.top,10)
-=======
+
 //                // Connect Button...
 //                Text("Connect With Me!")
 //                    .foregroundColor(.white)
@@ -85,6 +75,7 @@ struct ProfileView: View {
 //                    .clipShape(Capsule())
 //                .padding()
 //                .padding(.top,10)
+                
                 if (profileData.uid != profileData.userInfo.uid) {
                     Button(action: { if profileData.connectionContains(userString: profileData.userInfo.uid) == false {profileData.connectTo(userString: profileData.userInfo.uid)} else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {profileData.disconnectFrom(userString: profileData.userInfo.uid)}}) {
                         if profileData.connectionContains(userString: profileData.userInfo.uid) == false {
@@ -137,7 +128,7 @@ struct ProfileView: View {
     
                                 if(post.userString == profileData.userInfo.uid){
                                     
-                                    PostRow(post: post,postData: postData, profileData: profileData)
+                                    PostRow(post: post,postData: postData, profileData: profileData, applyData: applyData)
                                     
                                 }
                             }
@@ -147,7 +138,6 @@ struct ProfileView: View {
                     }
                     
                 }
->>>>>>> main
                 
                 Spacer(minLength: 0)
                 
