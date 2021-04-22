@@ -17,9 +17,10 @@ func fetchUser(uid: String,completion: @escaping (UserModel) -> ()){
         let uid = user.documentID
         let savedPosts = user.data()?["savedPosts"] as! Array<String>
         let appliedTo = user.data()?["appliedTo"] as! Array<String>
+        let connections = user.data()?["connections"] as! Array<String>
         
         DispatchQueue.main.async {
-            completion(UserModel(username: username, school: school, pic: pic, bio: bio, uid: uid, savedPosts: savedPosts, appliedTo: appliedTo))
+            completion(UserModel(username: username, school: school, pic: pic, bio: bio, uid: uid, savedPosts: savedPosts, appliedTo: appliedTo, connections: connections))
         }
     }
 }

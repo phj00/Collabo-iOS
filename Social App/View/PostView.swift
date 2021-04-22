@@ -69,7 +69,7 @@ struct PostView: View {
         }
         EmptyView().fullScreenCover(isPresented: $profileData.currentView) {
             
-            ProfileView(userString : profileData.tempUserString, profileData: profileData)
+            ProfileView(profileData: profileData, userString : profileData.tempUserString)
             
         }
         EmptyView().fullScreenCover(isPresented: $applyData.currentView) {
