@@ -22,7 +22,7 @@ struct ApplyView: View {
                 Button(action: {
                     applyData.currentView.toggle();
                     applyData.setPostId(postId: "");
-                    applyData.setPostPosition(title: "")
+                    applyData.setPostPosition(title: ""); applyData.setApplicationMessage(message: "")
                 }) {
                     Image(systemName: "arrow.left.circle")
                         .font(.title)

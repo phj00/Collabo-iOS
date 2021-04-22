@@ -25,6 +25,10 @@ class ApplyViewModel : ObservableObject{
         self.position = title
     }
     
+    func setApplicationMessage(message : String) {
+        self.applicationMessage = message
+    }
+    
     func applyTo(postId: String){
         
         let ref = Firestore.firestore()
