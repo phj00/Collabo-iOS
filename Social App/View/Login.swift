@@ -19,7 +19,7 @@ struct Login: View {
                 Text("Welcome Back! Please Login.")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .multilineTextAlignment(.center)
                 
@@ -33,7 +33,7 @@ struct Login: View {
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .keyboardType(.emailAddress)
-                .background(Color.white.opacity(0.06))
+                .background(Color.black.opacity(0.06))
                 .cornerRadius(15)
             
             SecureField("Password", text: $loginData.password)
@@ -42,7 +42,7 @@ struct Login: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .keyboardType(.default)
-                .background(Color.white.opacity(0.06))
+                .background(Color.black.opacity(0.06))
                 .cornerRadius(15)
                 
             .padding()
@@ -92,7 +92,7 @@ struct Login: View {
             
             
         }
-        .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+        .background(Color.white.ignoresSafeArea(.all, edges: .all))
         
         .fullScreenCover(isPresented: $createAccountData.doCreateAccount, content: {
             

@@ -102,7 +102,7 @@ struct Register: View {
             
             Spacer(minLength: 0)
         }
-        .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+        .background(Color.white.ignoresSafeArea(.all, edges: .all))
         .sheet(isPresented: $registerData.picker, content: {
             ImagePicker(picker: $registerData.picker, img_Data: $registerData.image_Data)
         })
