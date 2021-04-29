@@ -93,7 +93,7 @@ struct PostRow: View {
                 
                 Button(action: {
                     profileData.currentView.toggle();
-                    profileData.showProf(userString: post.userString)
+                    profileData.showProf(userString: post.userString);
                     profileData.setUserString(userString: post.userString)
                 }, label: {
                     Text(post.user.username)

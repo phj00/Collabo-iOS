@@ -36,9 +36,9 @@ class ProfileViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
 
-        ref.collection("Users").document(userString).updateData([
-            "connections": FieldValue.arrayUnion([uid])
-        ])
+//        ref.collection("Users").document(userString).updateData([
+//            "connections": FieldValue.arrayUnion([uid])
+//        ])
         
         ref.collection("Users").document(uid).updateData([
             "connections": FieldValue.arrayUnion([userString])
@@ -55,9 +55,9 @@ class ProfileViewModel : ObservableObject{
             "connections": FieldValue.arrayRemove([userString])
         ])
         
-        ref.collection("Users").document(userString).updateData([
-            "connections": FieldValue.arrayRemove([uid])
-        ])
+//        ref.collection("Users").document(userString).updateData([
+//            "connections": FieldValue.arrayRemove([uid])
+//        ])
 
         connectionStatus = !connectionStatus
     }
@@ -81,4 +81,3 @@ class ProfileViewModel : ObservableObject{
         
     }
 }
-
