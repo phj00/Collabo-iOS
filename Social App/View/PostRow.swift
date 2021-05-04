@@ -21,9 +21,25 @@ struct PostRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                 
-//                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
+                if postData.appliedContains(id: post.id) == false {
+                    Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}) {
+                        Text("Apply")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    }
+                } else if postData.appliedContains(id: post.id) == true {
+                    Button(action: {postData.withdrawApplication(postId: post.id)}){
+                        Text("Withdraw")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    }
+                }
+                
+                
+//                Button(action: {if postData.appliedContains(id: post.id) == false {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
 //                    if postData.appliedContains(id: post.id) == false {
-//
 //                        Text("Apply")
 //                            .font(.caption)
 //                            .font(.system(size: 16))
@@ -35,21 +51,6 @@ struct PostRow: View {
 //                            .fontWeight(.bold)
 //                    }
 //                }
-                
-                Button(action: {if postData.appliedContains(id: post.id) == false {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
-                    if postData.appliedContains(id: post.id) == false {
-                        Text("Apply")
-                            .font(.caption)
-                            .font(.system(size: 16))
-                            .fontWeight(.bold)
-                    } else if postData.appliedContains(id: post.id) == true {
-                        Text("Withdraw")
-                            .font(.caption)
-                            .font(.system(size: 16))
-                            .fontWeight(.bold)
-                    }
-                }
-                
                 
                 Spacer(minLength: 0)
                 
