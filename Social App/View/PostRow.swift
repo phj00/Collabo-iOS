@@ -14,9 +14,7 @@ struct PostRow: View {
         
         VStack(alignment: .leading){
             
-            
             HStack(spacing: 10){
-   // head
                 
                 Text(post.title)
                     .font(.system(size: 24))
@@ -38,13 +36,19 @@ struct PostRow: View {
 //                    }
 //                }
                 
-                Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}, label: {
-                       Text("Apply")
-                        .font(.caption)
-                        .font(.system(size: 16))
-                        .fontWeight(.bold)
-                })
-                
+                Button(action: {if postData.appliedContains(id: post.id) == false {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
+                    if postData.appliedContains(id: post.id) == false {
+                        Text("Apply")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    } else if postData.appliedContains(id: post.id) == true {
+                        Text("Withdraw")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    }
+                }
                 
                 
                 Spacer(minLength: 0)
