@@ -10,6 +10,8 @@ struct PostRow: View {
     @ObservedObject var applyData: ApplyViewModel
     let uid = Auth.auth().currentUser!.uid
     
+    @State var showAlert = false
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -29,28 +31,18 @@ struct PostRow: View {
                             .fontWeight(.bold)
                     }
                 } else if postData.appliedContains(id: post.id) == true {
-                    Button(action: {postData.withdrawApplication(postId: post.id)}){
+                    Button(action: {self.showAlert.toggle()}){
                         Text("Withdraw")
                             .font(.caption)
                             .font(.system(size: 16))
                             .fontWeight(.bold)
                     }
+                    .alert(isPresented: self.$showAlert) {
+                        Alert(title: Text("Withdraw Application"), message: Text("Are you sure you wish to withdraw this application?"), primaryButton: .default(Text("Withdraw"), action: {
+                            postData.withdrawApplication(postId: post.id)
+                        }), secondaryButton: .default(Text("Cancel")))
+                    }
                 }
-                
-                
-//                Button(action: {if postData.appliedContains(id: post.id) == false {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
-//                    if postData.appliedContains(id: post.id) == false {
-//                        Text("Apply")
-//                            .font(.caption)
-//                            .font(.system(size: 16))
-//                            .fontWeight(.bold)
-//                    } else if postData.appliedContains(id: post.id) == true {
-//                        Text("Withdraw")
-//                            .font(.caption)
-//                            .font(.system(size: 16))
-//                            .fontWeight(.bold)
-//                    }
-//                }
                 
                 Spacer(minLength: 0)
                 

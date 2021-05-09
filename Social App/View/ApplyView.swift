@@ -79,7 +79,6 @@ struct ApplyView: View {
                     .padding()
                     .padding(.top,10)
                     
-                
                 Spacer(minLength: 0)
             }
             
