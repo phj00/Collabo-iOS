@@ -91,7 +91,7 @@ struct PostRow: View {
                     
                     
                     if postData.appliedContains(id: post.id) == false {
-                        Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}) {
+                        Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title); applyData.setApplicationMessage(message: "")}) {
                             Text("Apply")
                                 .font(.caption)
                                 .font(.system(size: 16))

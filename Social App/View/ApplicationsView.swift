@@ -64,7 +64,7 @@ struct ApplicationsView: View {
                         
                         ForEach(applicationData.IncomingApplications){application in
                             
-                            ApplicationRow(application: application, applicationData: applicationData)
+                            IncomingApplicationRow(application: application, applicationData: applicationData)
                             
                         }
                         
@@ -75,7 +75,7 @@ struct ApplicationsView: View {
                         
                         ForEach(applicationData.OutgoingApplications) { application in
                             
-                            ApplicationRow(application: application, applicationData: applicationData)
+                            IncomingApplicationRow(application: application, applicationData: applicationData)
                             
                         }
                         

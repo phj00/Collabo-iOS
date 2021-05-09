@@ -1,5 +1,5 @@
 //
-//  ApplicationRow.swift
+//  IncomingApplicationRow.swift
 //  Social App
 //
 //  Created by Ryan Koo on 2/17/21.
@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
 
-struct ApplicationRow: View {
+struct IncomingApplicationRow: View {
     
     var application : ApplicationModel
     @ObservedObject var applicationData : ApplicationsViewModel

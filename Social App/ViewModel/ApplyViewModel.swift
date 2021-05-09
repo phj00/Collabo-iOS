@@ -74,7 +74,7 @@ class ApplyViewModel : ObservableObject{
             }
         }
         
-        self.setApplicationMessage(message: "")
+//        self.setApplicationMessage(message: "")
         
     }
     
