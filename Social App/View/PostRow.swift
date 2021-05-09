@@ -10,10 +10,47 @@ struct PostRow: View {
     @ObservedObject var applyData: ApplyViewModel
     let uid = Auth.auth().currentUser!.uid
     
+    @State var showAlert = false
+    
     var body: some View {
         
         VStack(alignment: .leading){
             
+<<<<<<< HEAD
+            HStack(spacing: 10){
+                
+                Text(post.title)
+                    .font(.system(size: 24))
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                
+                if postData.appliedContains(id: post.id) == false {
+                    Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}) {
+                        Text("Apply")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    }
+                } else if postData.appliedContains(id: post.id) == true {
+                    Button(action: {self.showAlert.toggle()}){
+                        Text("Withdraw")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                    }
+                    .alert(isPresented: self.$showAlert) {
+                        Alert(title: Text("Withdraw Application"), message: Text("Are you sure you wish to withdraw this application?"), primaryButton: .default(Text("Withdraw"), action: {
+                            postData.withdrawApplication(postId: post.id)
+                        }), secondaryButton: .default(Text("Cancel")))
+                    }
+                }
+                
+                Spacer(minLength: 0)
+                
+                // displaying only posted user...
+                
+                if post.user.uid == uid{
+=======
             ZStack{
                 HStack{
                     Divider()
@@ -32,6 +69,7 @@ struct PostRow: View {
                         .font(.caption)
                         .foregroundColor(.black)
                     }
+>>>>>>> main
                     
     //                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
     //                    if postData.appliedContains(id: post.id) == false {

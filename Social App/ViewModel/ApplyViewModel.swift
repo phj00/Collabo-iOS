@@ -74,6 +74,8 @@ class ApplyViewModel : ObservableObject{
             }
         }
         
+        self.setApplicationMessage(message: "")
+        
     }
     
     func withdrawApplication(postId: String){
