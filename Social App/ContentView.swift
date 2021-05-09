@@ -35,3 +35,13 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+extension View {
+    func underlineTextField() -> some View {
+        self
+            .padding(.vertical, 10)
+            .overlay(Rectangle().frame(height: 2).padding(.top, 35))
+            .foregroundColor(Color.black.opacity(0.06))
+            .padding(10)
+    }
+}

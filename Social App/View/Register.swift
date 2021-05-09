@@ -8,16 +8,14 @@ struct Register: View {
     var body: some View {
         VStack{
             
-            HStack{
-                
-                Text("Register")
-                    .font(.largeTitle)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                
-                Spacer(minLength: 0)
-            }
-            .padding()
+            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+            
+            Text("Complete Your Account")
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .foregroundColor(.black)
+                .frame(width: UIScreen.main.bounds.width - 60, alignment: .center)
+                .multilineTextAlignment(.center)
             
             ZStack{
                 
@@ -45,37 +43,42 @@ struct Register: View {
                 registerData.picker.toggle()
             })
             
-            HStack(spacing: 15){
-                
-                TextField("Name", text: $registerData.name)
-                    .padding()
-                    .keyboardType(.numberPad)
-                    .background(Color.white.opacity(0.06))
-                    .cornerRadius(15)
+            VStack(alignment: .leading, spacing: 0.0) {
+                Text("Full Name")
+                    .foregroundColor(Color.black)
+                    .padding(.leading, 10.0)
+                TextField("", text: $registerData.name)
+                    .frame(width: UIScreen.main.bounds.width - 40)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .keyboardType(.emailAddress)
+                    .foregroundColor(.black)
+                    .underlineTextField()
             }
-            .padding()
             
-            HStack(spacing: 15){
-                
-                TextField("School", text: $registerData.school)
-                    .padding()
-                    .keyboardType(.default)
-                    .background(Color.white.opacity(0.06))
-                    .cornerRadius(15)
+            VStack(alignment: .leading) {
+                Text("School/Institution")
+                    .foregroundColor(Color.black)
+                    .padding(.leading, 10.0)
+                TextField("", text: $registerData.school)
+                    .frame(width: UIScreen.main.bounds.width - 40)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .foregroundColor(.black)
+                    .underlineTextField()
             }
-            .padding(.horizontal)
-            .padding(.bottom)
             
-            HStack(spacing: 15){
-                
-                TextField("Bio", text: $registerData.bio)
-                    .padding()
-                    .keyboardType(.numberPad)
-                    .background(Color.white.opacity(0.06))
-                    .cornerRadius(15)
+            VStack(alignment: .leading) {
+                Text("Bio")
+                    .foregroundColor(Color.black)
+                    .padding(.leading, 10.0)
+                TextField("", text: $registerData.bio)
+                    .frame(width: UIScreen.main.bounds.width - 40)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .foregroundColor(.black)
+                    .underlineTextField()
             }
-            .padding(.horizontal)
-            .padding(.bottom)
             
             if registerData.isLoading{
                 
@@ -92,23 +95,34 @@ struct Register: View {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 100)
+                        .frame(width: UIScreen.main.bounds.width - 40)
                         .background(Color("blue"))
-                        .clipShape(Capsule())
+                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 })
-                .disabled(registerData.image_Data.count == 0 || registerData.name == "" || registerData.bio == "" ? true : false)
-                .opacity(registerData.image_Data.count == 0 || registerData.name == "" || registerData.bio == "" ? 0.5 : 1)
+                .disabled(
+                    //registerData.image_Data.count == 0 ||
+                    registerData.name == "" || registerData.bio == "" ? true : false)
+                .opacity(
+                    //registerData.image_Data.count == 0 ||
+                      registerData.name == "" || registerData.bio == "" ? 0.5 : 1)
             }
             
             Spacer(minLength: 0)
         }
-        .background(Color.white.ignoresSafeArea(.all, edges: .all))
+        .background(Color.white)
         .sheet(isPresented: $registerData.picker, content: {
             ImagePicker(picker: $registerData.picker, img_Data: $registerData.image_Data)
         })
-//        .sheet(isPresented: $registerData.isRegistered, content: {
-//            Home()
-//        })
+        .sheet(isPresented: $registerData.isRegistered, content: {
+            Home()
+        })
         .preferredColorScheme(.dark)
+    }
+}
+
+struct Register_Previews: PreviewProvider {
+    @StateObject static var createAccountDataP = CreateAccountViewModel()
+    static var previews: some View {
+        Register(isPresented: $createAccountDataP.registerUser)
     }
 }

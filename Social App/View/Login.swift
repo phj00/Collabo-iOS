@@ -7,46 +7,43 @@ struct Login: View {
     
     var body: some View {
         VStack{
-            ZStack{
-                Circle()
-                    .fill(Color.blue)
-                    .frame(width: 150, height: 150)
-                    .padding(.top, 40)
-                Text("App Logo")
-                    .foregroundColor(Color.white)
-            }
-            HStack{
-                Text("Welcome Back! Please Login.")
-                    .font(.largeTitle)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .multilineTextAlignment(.center)
+//            Logo?
+//            ZStack{
+//                Circle()
+//                    .fill(Color.blue)
+//                    .frame(width: 150, height: 150)
+//                    .padding(.top, 40)
+//                Text("App Logo")
+//                    .foregroundColor(Color.white)
+//            }
+            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+            
+            Text("Welcome to Collabo")
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .foregroundColor(.black)
+                .frame(width: UIScreen.main.bounds.width - 60, alignment: .center)
+                .multilineTextAlignment(.center)
                 
-                Spacer(minLength: 0)
-            }
-            .padding(20)
-                
+            Text("Sign into your existing account.")
+                .foregroundColor(.black)
+                .padding(40)
+          
             TextField("E-Mail", text: $loginData.email)
-                .padding()
-                .frame(width: UIScreen.main.bounds.width - 30)
+                .frame(width: UIScreen.main.bounds.width - 40)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .keyboardType(.emailAddress)
-                .background(Color.black.opacity(0.06))
-                .cornerRadius(15)
+                .foregroundColor(.black)
+                .underlineTextField()
             
             SecureField("Password", text: $loginData.password)
-                .padding()
-                .frame(width: UIScreen.main.bounds.width - 30)
+                .frame(width: UIScreen.main.bounds.width - 40)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .keyboardType(.default)
-                .background(Color.black.opacity(0.06))
-                .cornerRadius(15)
-                
-            .padding()
-            .padding(.top,10)
+                .foregroundColor(.black)
+                .underlineTextField()
             
             if(loginData.emailNotRegistered){
                 Text("Error: Please check your e-mail and password.")
@@ -61,32 +58,29 @@ struct Login: View {
             }
             else{
                 Button(action: loginData.logIn, label: {
-                    Text("Log-In")
+                    Text("Login")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 100)
+                        .frame(width: UIScreen.main.bounds.width - 40)
                         .background(Color("blue"))
-                        .clipShape(Capsule())
+                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 })
                 .disabled(loginData.email == "" || loginData.password == "" ? true : false)
-                .opacity(loginData.email == "" || loginData.password == "" ? 0.5 : 1)
             }
             
             Spacer(minLength: 0)
             
-            //Text("New to Collabo?")
-            //    .foregroundColor(.white)
-            //    .fontWeight(.bold)
-            //    .padding()
+            Text("Don't have an account yet?")
+                .foregroundColor(.black)
             
             Button(action: createAccountData.createNewAccount, label: {
-                Text("Create a New Account here")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
+                Text("Create an account here")
+                    .foregroundColor(.blue)
+                    .italic()
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color("blue"))
+                    .background(Color.white)
                     .clipShape(Capsule())
             })
             
@@ -109,4 +103,11 @@ struct Login: View {
     }
     
 }
+
+struct Login_Previews: PreviewProvider {
+    static var previews: some View {
+        Login()
+    }
+}
+
 
