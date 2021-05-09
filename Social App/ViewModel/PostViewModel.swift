@@ -4,7 +4,9 @@ import Firebase
 class PostViewModel : ObservableObject{
     
     @Published var Postings : [PostModel] = []
+  
     @Published var noPostings = false
+
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
@@ -62,6 +64,7 @@ class PostViewModel : ObservableObject{
                         
 
                         self.Postings.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
+
 
                         // Sorting All Model..
                         // you can also doi while reading docs...

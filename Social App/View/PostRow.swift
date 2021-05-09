@@ -16,6 +16,7 @@ struct PostRow: View {
         
         VStack(alignment: .leading){
             
+<<<<<<< HEAD
             HStack(spacing: 10){
                 
                 Text(post.title)
@@ -49,35 +50,92 @@ struct PostRow: View {
                 // displaying only posted user...
                 
                 if post.user.uid == uid{
-                    
-                    Menu(content: {
-                        
-                        Button(action: {postData.editPost(id: post.id)}) {
-                            
-                            Text("Edit")
-                        }
-                        
-                        Button(action: {postData.deletePost(id: post.id)}) {
-                            
-                            Text("Delete")
-                        }
-                        
-//                        Button(action: {postData.getReachOut(id: post.id)}) {
-//
-//                            Text("List of Reach out's")
-//
-//                        }
-                        
-                    }, label: {
-                        
-                        Image("menu")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .foregroundColor(.white)
-                    })
+=======
+            ZStack{
+                HStack{
+                    Divider()
                 }
-            }.padding(.bottom, 5)
+                
+                HStack(spacing: 10){
+       // head
+                    VStack(alignment: .leading){
+                        Text(post.title)
+                        .font(.system(size: 20))
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        
+                        //Need to pull out compant name here
+                        Text(post.title)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                    }
+>>>>>>> main
+                    
+    //                Button(action: { if postData.appliedContains(id: post.id) == false {postData.applyTo(postId: post.id)} else if postData.appliedContains(id: post.id) == true {postData.withdrawApplication(postId: post.id)}}) {
+    //                    if postData.appliedContains(id: post.id) == false {
+    //
+    //                        Text("Apply")
+    //                            .font(.caption)
+    //                            .font(.system(size: 16))
+    //                            .fontWeight(.bold)
+    //                    } else if postData.appliedContains(id: post.id) == true {
+    //                        Text("Withdraw")
+    //                            .font(.caption)
+    //                            .font(.system(size: 16))
+    //                            .fontWeight(.bold)
+    //                    }
+    //                }
+                    
+                    
+                    Spacer(minLength: 150)
+                    
+                    Button(action: {applyData.currentView.toggle(); applyData.setPostId(postId: post.id); applyData.setPostPosition(title: post.title)}, label: {
+                           Text("Apply")
+                            .font(.caption)
+                            .font(.system(size: 16))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("blue"))
+//                            .background(Color("blue"))
+                            .cornerRadius(20)
+
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                    // displaying only posted user...
+                    
+                    if post.user.uid == uid{
+                        
+                        Menu(content: {
+                            
+                            Button(action: {postData.editPost(id: post.id)}) {
+
+                                Text("Edit")
+                            }
+                            
+                            Button(action: {postData.deletePost(id: post.id)}) {
+                                
+                                Text("Delete")
+                            }
+                            
+    //                        Button(action: {postData.getReachOut(id: post.id)}) {
+    //
+    //                            Text("List of Reach out's")
+    //
+    //                        }
+                            
+                        }, label: {
+                            
+                            Image("menu")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                                .foregroundColor(.white)
+                        })
+                    }
+                }
+            }
+            .frame(minHeight: 0,
+                   maxHeight: 20)
+            .padding(.vertical, 10)
             
 //            HStack(spacing: 10){
 //
@@ -88,29 +146,29 @@ struct PostRow: View {
 //
 //            }
             
-            HStack(spacing: 10){
-                
-                WebImage(url: URL(string: post.user.pic)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-                
-                //first toggle, then checkuser, then display user
-                
-                Button(action: {
-                    profileData.currentView.toggle();
-                    profileData.showProf(userString: post.userString)
-                    profileData.setUserString(userString: post.userString)
-                }, label: {
-                    Text(post.user.username)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                })
-                
-            }
-            
-            if post.pic != ""{
+//            HStack(spacing: 10){
+//
+//                WebImage(url: URL(string: post.user.pic)!)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 50, height: 50)
+//                    .clipShape(Circle())
+//
+//                //first toggle, then checkuser, then display user
+//
+//                Button(action: {
+//                    profileData.currentView.toggle();
+//                    profileData.showProf(userString: post.userString)
+//                    profileData.setUserString(userString: post.userString)
+//                }, label: {
+//                    Text(post.user.username)
+//                        .foregroundColor(.black)
+//                        .fontWeight(.bold)
+//                })
+//
+//            }
+//
+            if post.pic != ""  {
                 
                 WebImage(url: URL(string: post.pic)!)
                     .resizable()
@@ -152,46 +210,43 @@ struct PostRow: View {
                 
                 // && post.id == 
                 
-                Button(action: { if postData.savedContains(id: post.id) == false {postData.savePost(id: post.id)} else if postData.savedContains(id: post.id) == true {postData.unsavePost(id: post.id)}}) {
-                    if postData.savedContains(id: post.id) == false {
-                        Image(systemName: "bookmark")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    } else if postData.savedContains(id: post.id) == true {
-                        Image(systemName: "bookmark.fill")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    }
+                VStack(alignment: .leading){
+                    
+                    Text(post.time,style: .date)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                    
+                    Spacer(minLength: 0)
+                    
+                    Text(post.user.username)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                    
+                    
                 }
                 
                 Spacer(minLength: 100)
                 
-                VStack(alignment: .trailing){
-                    
-                    Text(post.time,style: .time)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    
-                    Spacer(minLength: 0)
-                    
-                    Text(post.category)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    
-                    
+                Button(action: { if postData.savedContains(id: post.id) == false {postData.savePost(id: post.id)} else if postData.savedContains(id: post.id) == true {postData.unsavePost(id: post.id)}}) {
+                    if postData.savedContains(id: post.id) == false {
+                        Image(systemName: "bookmark")
+                            .font(.title)
+                            .foregroundColor(.black)
+                    } else if postData.savedContains(id: post.id) == true {
+                        Image(systemName: "bookmark.fill")
+                            .font(.title)
+                            .foregroundColor(.black)
+                    }
                 }
                 
             }
             .frame(minHeight: 0,
-                   maxHeight: 10
-            )
+                   maxHeight: 10)
             .padding(.vertical, 5)
             
         }
         .padding()
-        .background(Color.white.opacity(0.06))
+        .background(Color.white)
         .cornerRadius(15)
     }
     

@@ -124,6 +124,7 @@ struct SettingsView: View {
                         VStack(spacing: 15){
                             
                             ForEach(postData.Postings){post in
+
     
                                 if(post.userString == Auth.auth().currentUser!.uid){
                                     
