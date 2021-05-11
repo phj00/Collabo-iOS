@@ -7,7 +7,9 @@ struct ProfileView: View {
     @StateObject var settingsData = SettingsViewModel()
     @StateObject var postData = PostViewModel()
     @StateObject var profileData : ProfileViewModel
+    @StateObject var connectionData : ConnectionsViewModel
     @StateObject var applyData : ApplyViewModel
+
     @State var userString: String
 
     var body: some View {
@@ -64,17 +66,20 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-
-//                // Connect Button...
-//                Text("Connect With Me!")
-//                    .foregroundColor(.white)
-//                    .fontWeight(.bold)
-//                    .padding(.vertical)
-//                    .frame(width: UIScreen.main.bounds.width - 100)
-//                    .background(Color("blue"))
-//                    .clipShape(Capsule())
-//                .padding()
-//                .padding(.top,10)
+                HStack(spacing: 15){
+                    Button(action: {connectionData.getAllFollowing(userString: profileData.uid); connectionData.temp.toggle();
+                    }, label: {
+                        Text("Connections")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 100)
+                            .background(Color("blue"))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.top,10)
+                    } )
+                }
                 
                 if (profileData.uid != profileData.userInfo.uid) {
                     Button(action: { if profileData.connectionContains(userString: profileData.userInfo.uid) == false {profileData.connectTo(userString: profileData.userInfo.uid)} else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {profileData.disconnectFrom(userString: profileData.userInfo.uid)}}) {
@@ -87,7 +92,6 @@ struct ProfileView: View {
                                 .frame(width: UIScreen.main.bounds.width - 100)
                                 .background(Color("blue"))
                                 .clipShape(Capsule())
-                                .padding()
                                 .padding(.top,10)
                         } else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {
                             Text("Connected!")
@@ -97,7 +101,6 @@ struct ProfileView: View {
                                 .frame(width: UIScreen.main.bounds.width - 100)
                                 .background(Color("blue"))
                                 .clipShape(Capsule())
-                                .padding()
                                 .padding(.top,10)
                         }
                     }
@@ -144,5 +147,8 @@ struct ProfileView: View {
             }
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+        .fullScreenCover(isPresented: $connectionData.temp) {
+            ConnectionsView(connectionData: connectionData, profileData: profileData)
+        }
     }
 }

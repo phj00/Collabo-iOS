@@ -160,29 +160,7 @@ struct PostRow: View {
 //                    .foregroundColor(.white)
 //
 //            }
-            
-//            HStack(spacing: 10){
-//
-//                WebImage(url: URL(string: post.user.pic)!)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 50, height: 50)
-//                    .clipShape(Circle())
-//
-//                //first toggle, then checkuser, then display user
-//
-//                Button(action: {
-//                    profileData.currentView.toggle();
-//                    profileData.showProf(userString: post.userString)
-//                    profileData.setUserString(userString: post.userString)
-//                }, label: {
-//                    Text(post.user.username)
-//                        .foregroundColor(.black)
-//                        .fontWeight(.bold)
-//                })
-//
-//            }
-//
+          
             if post.pic != ""  {
                 
                 WebImage(url: URL(string: post.pic)!)
@@ -233,9 +211,16 @@ struct PostRow: View {
                     
                     Spacer(minLength: 0)
                     
-                    Text(post.user.username)
-                        .font(.caption)
-                        .foregroundColor(.black)
+                    Button(action: {
+                        profileData.currentView.toggle();
+                        profileData.showProf(userString: post.userString)
+                        profileData.setUserString(userString: post.userString)
+                        
+                    }, label: {
+                        Text(post.user.username)
+                            .font(.caption)
+                            .foregroundColor(.black)
+                    })
                     
                     
                 }

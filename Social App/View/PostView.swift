@@ -4,7 +4,9 @@ struct PostView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var postData = PostViewModel()
     @StateObject var profileData = ProfileViewModel()
+    @StateObject var connectionData = ConnectionsViewModel()
     @StateObject var applyData = ApplyViewModel()
+
     var body: some View {
         
         VStack{
@@ -69,7 +71,7 @@ struct PostView: View {
         }
         EmptyView().fullScreenCover(isPresented: $profileData.currentView) {
             
-            ProfileView(profileData: profileData, applyData: applyData, userString : profileData.tempUserString)
+            ProfileView(profileData: profileData, connectionData: connectionData, applyData: applyData, userString : profileData.tempUserString)
             
         }
         EmptyView().fullScreenCover(isPresented: $applyData.currentView) {
