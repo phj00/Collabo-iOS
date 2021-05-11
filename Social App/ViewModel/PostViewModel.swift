@@ -4,7 +4,9 @@ import Firebase
 class PostViewModel : ObservableObject{
     
     @Published var Postings : [PostModel] = []
+  
     @Published var noPostings = false
+
     @Published var newPost = false
     @Published var updateId = ""
     @Published var savedStatus = false
@@ -63,6 +65,7 @@ class PostViewModel : ObservableObject{
 
                         self.Postings.append(PostModel(id: doc.document.documentID, title: title, category: category, pic: pic, time: time.dateValue(), user: user, userString: userString, appliedBy: appliedBy))
 
+
                         // Sorting All Model..
                         // you can also doi while reading docs...
                         self.Postings.sort { (p1, p2) -> Bool in
@@ -109,7 +112,6 @@ class PostViewModel : ObservableObject{
                 }
             }
         }
-        
     }
     
     // deleting Projects...
@@ -136,7 +138,6 @@ class PostViewModel : ObservableObject{
                 return
             }
         }
-
     }
     
     func editPost(id: String){
@@ -208,7 +209,6 @@ class PostViewModel : ObservableObject{
         }
         return self.group_array
     }
-    
 
     func applyTo(postId: String){
         
@@ -255,7 +255,6 @@ class PostViewModel : ObservableObject{
                 ref.collection("Applications").document(applicationUid).setData(["applicantPhoto": property], merge: true)
             }
         }
-        
     }
     
     func withdrawApplication(postId: String){
@@ -279,10 +278,7 @@ class PostViewModel : ObservableObject{
                 }
             }
         }
-        
-
         appliedStatus = !appliedStatus
-
     }
 
     func getUserString(postId: String, completion: @escaping (String?) -> Void) {
@@ -309,9 +305,7 @@ class PostViewModel : ObservableObject{
                 print("Document does not exist.")
                 completion(nil)
             }
-            
         }
-        
     }
     
     func getApplicantPhoto(completion: @escaping (String?) -> Void) {
@@ -331,59 +325,6 @@ class PostViewModel : ObservableObject{
             
         }
     }
-
-//        appliedTo = !appliedTo
-//
-//    }
-//
-//    func undoApply (id: String) {
-//
-//        let uid = Auth.auth().currentUser!.uid
-//
-//        let temp = ref.collection("Projects").document(id)
-//
-//        temp.updateData([
-//            "appliedBy": FieldValue.arrayRemove([uid])
-//        ])
-//
-//        appliedTo = !appliedTo
-//
-//
-//    }
-//
-//    func appliedByContains(id: String) -> Bool { // view
-//
-//        let uid = Auth.auth().currentUser!.uid
-//
-//        Firestore.firestore().collection("Projects").document(id).getDocument {
-//            (document, error) in
-//            if let document = document {
-//                self.group_array_2 = document["appliedBy"] as? Array ?? [""]
-//            }
-//        }
-//
-//        if self.group_array_2.contains(uid) {
-//            return true
-//        } else {
-//            return false
-//        }
-//
-//    }
-
-//    func getReachOut(id: String) {
-//
-//        let uid = Auth.auth().currentUser!.uid
-//
-//        Firestore.firestore().collection("Projects").document(uid).getDocument {
-//            (document, error) in
-//            let appliedBy = document?.get("appliedBy") as? Array<String>
-//
-//
-//    }
-//    }
-
-
-    
     
     func appliedContains(id: String) -> Bool {
         

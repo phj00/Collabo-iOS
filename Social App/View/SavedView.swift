@@ -11,6 +11,7 @@ struct SavedView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var postData = PostViewModel()
     @StateObject var profileData = ProfileViewModel()
+    @StateObject var applyData = ApplyViewModel()
     
     var body: some View {
         
@@ -38,7 +39,7 @@ struct SavedView: View {
                         ForEach(postData.Postings){post in
                             
                             if postData.savedContains(id: post.id){
-                                PostRow(post: post, postData: postData, profileData: profileData)
+                                PostRow(post: post, postData: postData, profileData: profileData, applyData: applyData)
                             }
                         }
                     }

@@ -8,6 +8,8 @@ struct ProfileView: View {
     @StateObject var postData = PostViewModel()
     @StateObject var profileData : ProfileViewModel
     @StateObject var connectionData : ConnectionsViewModel
+    @StateObject var applyData : ApplyViewModel
+
     @State var userString: String
 
     var body: some View {
@@ -78,7 +80,6 @@ struct ProfileView: View {
                             .padding(.top,10)
                     } )
                 }
-
                 
                 if (profileData.uid != profileData.userInfo.uid) {
                     Button(action: { if profileData.connectionContains(userString: profileData.userInfo.uid) == false {profileData.connectTo(userString: profileData.userInfo.uid)} else if profileData.connectionContains(userString: profileData.userInfo.uid) == true {profileData.disconnectFrom(userString: profileData.userInfo.uid)}}) {
@@ -130,7 +131,7 @@ struct ProfileView: View {
     
                                 if(post.userString == profileData.userInfo.uid){
                                     
-                                    PostRow(post: post,postData: postData, profileData: profileData)
+                                    PostRow(post: post,postData: postData, profileData: profileData, applyData: applyData)
                                     
                                 }
                             }

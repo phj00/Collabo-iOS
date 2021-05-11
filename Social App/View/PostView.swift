@@ -5,6 +5,8 @@ struct PostView: View {
     @StateObject var postData = PostViewModel()
     @StateObject var profileData = ProfileViewModel()
     @StateObject var connectionData = ConnectionsViewModel()
+    @StateObject var applyData = ApplyViewModel()
+
     var body: some View {
         
         VStack{
@@ -54,7 +56,7 @@ struct PostView: View {
                         
                         ForEach(postData.Postings){post in
                             
-                            PostRow(post: post,postData: postData, profileData: profileData)
+                            PostRow(post: post,postData: postData, profileData: profileData, applyData: applyData)
                         }
                     }
                     .padding()
@@ -69,7 +71,12 @@ struct PostView: View {
         }
         EmptyView().fullScreenCover(isPresented: $profileData.currentView) {
             
-            ProfileView(profileData: profileData, connectionData: connectionData, userString : profileData.tempUserString)
+            ProfileView(profileData: profileData, connectionData: connectionData, applyData: applyData, userString : profileData.tempUserString)
+            
+        }
+        EmptyView().fullScreenCover(isPresented: $applyData.currentView) {
+            
+            ApplyView(postId : applyData.postId, position : applyData.position, applyData: applyData)
             
         }
     }

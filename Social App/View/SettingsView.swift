@@ -7,6 +7,7 @@ struct SettingsView: View {
     @StateObject var settingsData = SettingsViewModel()
     @StateObject var postData = PostViewModel()
     @StateObject var profileData = ProfileViewModel()
+    @StateObject var applyData = ApplyViewModel()
     var body: some View {
         
         ScrollView{
@@ -123,10 +124,11 @@ struct SettingsView: View {
                         VStack(spacing: 15){
                             
                             ForEach(postData.Postings){post in
+
     
                                 if(post.userString == Auth.auth().currentUser!.uid){
                                     
-                                    PostRow(post: post,postData: postData, profileData: profileData)
+                                    PostRow(post: post,postData: postData, profileData: profileData, applyData: applyData)
                                     
                                 }
                             }

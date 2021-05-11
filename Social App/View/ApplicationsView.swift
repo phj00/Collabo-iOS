@@ -41,7 +41,7 @@ struct ApplicationsView: View {
                 
             }
             
-            if applicationData.IncomingApplications.isEmpty{
+            if applicationData.IncomingApplications.isEmpty && applicationData.OutgoingApplications.isEmpty {
                 
                 Spacer(minLength: 0)
                 
@@ -57,13 +57,28 @@ struct ApplicationsView: View {
                 
                 ScrollView{
                     
-                    VStack(spacing: 15){
+                    VStack(alignment: .leading, spacing: 15){
+                        
+                        Text("Incoming Applications:")
+                            .bold()
                         
                         ForEach(applicationData.IncomingApplications){application in
                             
-                            ApplicationRow(application: application, applicationData: applicationData)
+                            IncomingApplicationRow(application: application, applicationData: applicationData)
                             
                         }
+                        
+                        Divider()
+                        
+                        Text("Outgoing Applications:")
+                            .bold()
+                        
+                        ForEach(applicationData.OutgoingApplications) { application in
+                            
+                            IncomingApplicationRow(application: application, applicationData: applicationData)
+                            
+                        }
+                        
                     }
                     .padding()
                     .padding(.bottom,55)
