@@ -3,7 +3,8 @@ import Firebase
 
 class ConnectionsViewModel : ObservableObject{
     
-    @Published var currentFollowers = [String]()
+    @Published var currentConnections : [ConnectionsModel] = []
+    @Published var tempConnections = [String]()
     let ref = Firestore.firestore()
     let uid = Auth.auth().currentUser!.uid
     @Published var temp = false
@@ -12,7 +13,10 @@ class ConnectionsViewModel : ObservableObject{
     
     func getAllFollowing(userString : String) {
         
-        ref.collection("Users").whereField("uid", isEqualTo: userString).getDocuments { (snap, err) in
+        self.currentConnections.removeAll()
+        self.tempConnections.removeAll()
+        
+        ref.collection("Connections").whereField("id", isEqualTo: userString).getDocuments { (snap, err) in
             
             if let err = err {
                 // Error fetching documents
@@ -21,7 +25,84 @@ class ConnectionsViewModel : ObservableObject{
                 for document in snap!.documents {
                     
                     let connections = document.data()["connections"] as! [String]
-                    self.currentFollowers.append(contentsOf: connections)
+                    
+                    self.tempConnections.append(contentsOf: connections)
+                    
+                    for connection in self.tempConnections {
+                        self.ref.collection("Connections").whereField("id", isEqualTo: connection).getDocuments {
+                            (snap, err) in
+                            
+                            if let err = err {
+                                
+                                print("Error fetching followers: \(err)")
+                            } else {
+                                for document in snap!.documents {
+                                    
+                                    let id = document.data()["id"] as! String
+                                    let username = document.data()["username"] as! String
+                                    let pic = document.data()["pic"] as! String
+                                    let connections = document.data()["connections"] as! [String]
+                                    
+                                    self.currentConnections.append(ConnectionsModel(id: id, username: username, pic: pic, connections: connections))
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    print("Success")
+                }
+        
+            }
+        }
+    }
+
+    
+    func settingsConnections() {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        self.currentConnections.removeAll()
+        
+        ref.collection("Connections").whereField("id", isEqualTo: uid).getDocuments { (snap, err) in
+            
+            if let err = err {
+                // Error fetching documents
+                print("Error fetching followers: \(err)")
+            } else {
+                for document in snap!.documents {
+                    
+                    let connections = document.data()["connections"] as! [String]
+                    
+                    self.tempConnections.append(contentsOf: connections)
+                    
+                    for connection in self.tempConnections {
+                        self.ref.collection("Connections").whereField("id", isEqualTo: connection).getDocuments {
+                            (snap, err) in
+                            
+                            if let err = err {
+                                
+                                print("Error fetching followers: \(err)")
+                            } else {
+                                for document in snap!.documents {
+                                    
+                                    let id = document.data()["id"] as! String
+                                    let username = document.data()["username"] as! String
+                                    let pic = document.data()["pic"] as! String
+                                    let connections = document.data()["connections"] as! [String]
+                                    
+                                    self.currentConnections.append(ConnectionsModel(id: id, username: username, pic: pic, connections: connections))
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    print("Success")
                 }
         
             }
@@ -31,14 +112,5 @@ class ConnectionsViewModel : ObservableObject{
     func setUser(userString : String) {
         
         self.tempString = userString
-    }
-    
-    func setImage(userString : String) {
-        Firestore.firestore().collection("Users").document(userString).getDocument {
-            (document, error) in
-            if let document = document {
-                self.imageString = document["imageurl"] as? String ?? ""
-            }
-        }
     }
 }

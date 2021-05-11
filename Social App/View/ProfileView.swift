@@ -67,7 +67,7 @@ struct ProfileView: View {
                 .padding(.bottom)
                 
                 HStack(spacing: 15){
-                    Button(action: {connectionData.getAllFollowing(userString: profileData.uid); connectionData.temp.toggle();
+                    Button(action: {connectionData.getAllFollowing(userString: profileData.userInfo.uid); connectionData.temp.toggle();
                     }, label: {
                         Text("Connections")
                             .foregroundColor(.white)
@@ -148,7 +148,7 @@ struct ProfileView: View {
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         .fullScreenCover(isPresented: $connectionData.temp) {
-            ConnectionsView(connectionData: connectionData, profileData: profileData)
+            ConnectionsView(connectionData: connectionData, profileData: profileData, applyData: applyData)
         }
     }
 }

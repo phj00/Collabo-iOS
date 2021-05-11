@@ -8,17 +8,29 @@ struct SettingsView: View {
     @StateObject var postData = PostViewModel()
     @StateObject var profileData = ProfileViewModel()
     @StateObject var applyData = ApplyViewModel()
+    @StateObject var connectionData = ConnectionsViewModel()
     var body: some View {
         
         ScrollView{
             VStack{
                 HStack{
+                    
                     Text("Settings")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
                     
                     Spacer(minLength: 0)
+                    
+                    Button(action: {connectionData.settingsConnections();
+                            connectionData.temp.toggle()
+                    }) {
+                        
+                        Image(systemName: "person.2.circle")
+                            .font(.title)
+                            .foregroundColor(Color("blue"))
+                        
+                    }
                     
                 }
                 .padding()
@@ -140,6 +152,14 @@ struct SettingsView: View {
                 }
                 
                 Spacer(minLength: 0)
+            }
+            EmptyView().fullScreenCover(isPresented: $connectionData.temp) {
+                ConnectionsView(connectionData: connectionData, profileData: profileData, applyData: applyData)
+            }
+            EmptyView().fullScreenCover(isPresented: $profileData.currentView) {
+                
+                ProfileView(profileData: profileData, connectionData: connectionData, applyData: applyData, userString : profileData.tempUserString)
+                
             }
             .sheet(isPresented: $settingsData.picker) {
                 

@@ -36,11 +36,19 @@ class ProfileViewModel : ObservableObject{
         
         let uid = Auth.auth().currentUser!.uid
 
-//        ref.collection("Users").document(userString).updateData([
-//            "connections": FieldValue.arrayUnion([uid])
-//        ])
+        ref.collection("Users").document(userString).updateData([
+            "connections": FieldValue.arrayUnion([uid])
+        ])
         
         ref.collection("Users").document(uid).updateData([
+            "connections": FieldValue.arrayUnion([userString])
+        ])
+        
+        ref.collection("Connections").document(userString).updateData([
+            "connections": FieldValue.arrayUnion([uid])
+        ])
+        
+        ref.collection("Connections").document(uid).updateData([
             "connections": FieldValue.arrayUnion([userString])
         ])
         
@@ -55,9 +63,17 @@ class ProfileViewModel : ObservableObject{
             "connections": FieldValue.arrayRemove([userString])
         ])
         
-//        ref.collection("Users").document(userString).updateData([
-//            "connections": FieldValue.arrayRemove([uid])
-//        ])
+        ref.collection("Users").document(userString).updateData([
+            "connections": FieldValue.arrayRemove([uid])
+        ])
+        
+        ref.collection("Connections").document(uid).updateData([
+            "connections": FieldValue.arrayRemove([userString])
+        ])
+        
+        ref.collection("Connections").document(userString).updateData([
+            "connections": FieldValue.arrayRemove([uid])
+        ])
 
         connectionStatus = !connectionStatus
     }
@@ -67,6 +83,12 @@ class ProfileViewModel : ObservableObject{
         let uid = Auth.auth().currentUser!.uid
         
         Firestore.firestore().collection("Users").document(uid).getDocument {
+            (document, error) in
+            if let document = document {
+                self.connection_array = document["connections"] as? Array ?? [""]
+            }
+        }
+        Firestore.firestore().collection("Connections").document(uid).getDocument {
             (document, error) in
             if let document = document {
                 self.connection_array = document["connections"] as? Array ?? [""]

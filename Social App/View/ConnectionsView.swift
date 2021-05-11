@@ -4,6 +4,7 @@ struct ConnectionsView: View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @StateObject var connectionData : ConnectionsViewModel
     @StateObject var profileData : ProfileViewModel
+    @StateObject var applyData : ApplyViewModel
     
     var body: some View {
         
@@ -32,7 +33,7 @@ struct ConnectionsView: View {
                 .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
             }
             
-            if connectionData.currentFollowers.isEmpty {
+            if connectionData.currentConnections.isEmpty {
                 
                 Spacer(minLength: 0)
                 
@@ -50,11 +51,11 @@ struct ConnectionsView: View {
                     
                     VStack (spacing: 15) {
                         
-//                        ForEach(connectionData.currentFollowers){follower in
-//
-//                            ConnectionsRow()
-//
-//                        }
+                        ForEach(connectionData.currentConnections){connection in
+                            
+                            ConnectionsRow(connection: connection, connectionData: connectionData, profileData: profileData, applyData: applyData)
+
+                        }
                     }
                     
                 }
