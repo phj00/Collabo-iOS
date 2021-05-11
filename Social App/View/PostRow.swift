@@ -219,7 +219,7 @@ struct PostRow: View {
                     }, label: {
                         Text(post.user.username)
                             .font(.caption)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("blue"))
                     })
                     
                     

@@ -41,12 +41,20 @@ class RegisterViewModel : ObservableObject{
                 "connections": self.connections
 
                 
-            ]) { (err) in
+            ])
+            self.ref.collection("Connections").document(uid).setData([
+                "id": uid,
+                "pic": url,
+                "username": self.name,
+                "connections": self.connections
+            ])
+            { (err) in
              
                 if err != nil{
                     self.isLoading = false
                     return
                 }
+                
                 self.isLoading = false
                 // success means settings status as true...
                 self.status = true
