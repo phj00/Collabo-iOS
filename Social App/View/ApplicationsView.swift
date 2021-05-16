@@ -12,81 +12,88 @@ struct ApplicationsView: View {
     @StateObject var applicationData = ApplicationsViewModel()
     var body: some View {
         
-        ScrollView{
-        
-            VStack {
-                
-                HStack {
-                
-                    Text("Applications")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.white)
-                    
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {applicationData.getAllIncomingApplications(); applicationData.getAllOutgoingApplications()}) {
-                        
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .font(.title)
-                            .foregroundColor(Color("blue"))
-                        
-                    }
-                
-                }
-                .padding()
-                .padding(.top,edges!.top)
-                .background(Color("bg"))
-                .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
-                
-            }
-            
-            if applicationData.IncomingApplications.isEmpty && applicationData.OutgoingApplications.isEmpty {
-                
-                Spacer(minLength: 0)
-                
-                HStack {
-                
-                Text("No Incoming Applications")
-                
-                }
-                
-                Spacer(minLength: 0)
-                
-            } else {
-                
+        Color.white
+            .ignoresSafeArea()
+            .overlay(
                 ScrollView{
-                    
-                    VStack(alignment: .leading, spacing: 15){
+                
+                    VStack {
                         
-                        Text("Incoming Applications:")
-                            .bold()
+                        HStack {
                         
-                        ForEach(applicationData.IncomingApplications){application in
+                            Text("Applications")
+                                .font(.largeTitle)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.black)
                             
-                            IncomingApplicationRow(application: application, applicationData: applicationData)
+                            Spacer(minLength: 0)
                             
+                            Button(action: {applicationData.getAllIncomingApplications(); applicationData.getAllOutgoingApplications()}) {
+                                
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .font(.title)
+                                    .foregroundColor(Color("blue"))
+                                
+                            }
+                        
                         }
+                        .padding()
+                        .padding(.top,edges!.top)
+//                        .background(Color("bg"))
+                        .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
                         
                         Divider()
                         
-                        Text("Outgoing Applications:")
-                            .bold()
+                    }
+                    
+                    if applicationData.IncomingApplications.isEmpty && applicationData.OutgoingApplications.isEmpty {
                         
-                        ForEach(applicationData.OutgoingApplications) { application in
+                        Spacer(minLength: 0)
+                        
+                        HStack {
+                        
+                        Text("No Incoming Applications")
+                        
+                        }
+                        
+                        Spacer(minLength: 0)
+                        
+                    } else {
+                        
+                        ScrollView{
                             
-                            OutgoingApplicationRow(application: application, applicationData: applicationData)
-                            
+                            VStack(alignment: .leading, spacing: 15){
+                                
+                                Text("Incoming Applications:")
+                                    .bold()
+                                    .foregroundColor(.black)
+                                
+                                ForEach(applicationData.IncomingApplications){application in
+                                    
+                                    IncomingApplicationRow(application: application, applicationData: applicationData)
+                                    
+                                }
+                                
+                                Divider()
+                                
+                                Text("Outgoing Applications:")
+                                    .bold()
+                                    .foregroundColor(.black)
+                                
+                                ForEach(applicationData.OutgoingApplications) { application in
+                                    
+                                    OutgoingApplicationRow(application: application, applicationData: applicationData)
+                                    
+                                }
+                                
+                            }
+                            .padding()
+                            .padding(.bottom,55)
                         }
                         
                     }
-                    .padding()
-                    .padding(.bottom,55)
-                }
-                
-            }
-            
-        }
+                    
+            })
         
     }
 }

@@ -23,6 +23,7 @@ struct OutgoingApplicationRow: View {
             
                 Text("Position Applied: \(application.positionApplied)")
                     .font(.body)
+                    .foregroundColor(.black)
                     
             }
             
@@ -30,11 +31,15 @@ struct OutgoingApplicationRow: View {
             
             Text(application.applicationMessage)
                 .font(.caption)
+                .foregroundColor(.black)
                 
         }
         .padding()
-        .background(Color.white.opacity(0.06))
         .cornerRadius(15)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.black, lineWidth: 1)
+        )
         
     }
 }
