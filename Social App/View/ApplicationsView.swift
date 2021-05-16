@@ -25,7 +25,7 @@ struct ApplicationsView: View {
                     
                     Spacer(minLength: 0)
                     
-                    Button(action: {applicationData.getAllIncomingApplications()}) {
+                    Button(action: {applicationData.getAllIncomingApplications(); applicationData.getAllOutgoingApplications()}) {
                         
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .font(.title)
@@ -75,7 +75,7 @@ struct ApplicationsView: View {
                         
                         ForEach(applicationData.OutgoingApplications) { application in
                             
-                            IncomingApplicationRow(application: application, applicationData: applicationData)
+                            OutgoingApplicationRow(application: application, applicationData: applicationData)
                             
                         }
                         
