@@ -23,6 +23,7 @@ struct IncomingApplicationRow: View {
             
                 Text("Applicant: \(application.applicantUserName)")
                     .font(.body)
+                    .foregroundColor(.black)
                 
                 WebImage(url: URL(string: application.applicantPhoto)!)
                     .resizable()
@@ -36,11 +37,16 @@ struct IncomingApplicationRow: View {
             
             Text(application.applicationMessage)
                 .font(.caption)
+                .foregroundColor(.black)
                 
         }
         .padding()
         .background(Color.white.opacity(0.06))
         .cornerRadius(15)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.black, lineWidth: 1)
+        )
         
     }
 }
