@@ -15,44 +15,51 @@ struct SavedView: View {
     
     var body: some View {
         
-        VStack{
-            HStack{
-                Text("Saved Posts")
-                    .font(.largeTitle)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                
-                Spacer(minLength: 0)
-                
-            }
-            .padding()
-            .padding(.top,edges!.top)
-            // Top Shadow Effect...
-            .background(Color("bg"))
-            .shadow(color: Color.white.opacity(0.06), radius: 5, x: 0, y: 5)
+        Color.white
+            .ignoresSafeArea()
+            .overlay(
             
-            if !postData.getSaved().isEmpty {
-                ScrollView{
-                    
-                    VStack(spacing: 15){
+                VStack{
+                    HStack{
+                        Text("Saved Posts")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color.black)
                         
-                        ForEach(postData.Postings){post in
-                            
-                            if postData.savedContains(id: post.id){
-                                PostRow(post: post, postData: postData, profileData: profileData, applyData: applyData)
-                            }
-                        }
+                        Spacer(minLength: 0)
+                        
                     }
                     .padding()
-                    .padding(.bottom,55)
-                }
-            } else {
-                Spacer(minLength: 0)
-                
-                Text("No Posts to View")
+                    .padding(.top,edges!.top)
+                    // Top Shadow Effect...
+//                    .background(Color.white)
+                    .shadow(color: Color.black.opacity(0.06), radius: 5, x: 0, y: 5)
+                    
+                    Divider()
+                    
+                    if !postData.getSaved().isEmpty {
+                        ScrollView{
+                            
+                            VStack(spacing: 15){
+                                
+                                ForEach(postData.Postings){post in
+                                    
+                                    if postData.savedContains(id: post.id){
+                                        PostRow(post: post, postData: postData, profileData: profileData, applyData: applyData)
+                                    }
+                                }
+                            }
+                            .padding()
+                            .padding(.bottom,55)
+                        }
+                    } else {
+                        Spacer(minLength: 0)
+                        
+                        Text("No Posts to View")
 
-                Spacer(minLength: 0)
-            }
-        }
+                        Spacer(minLength: 0)
+                    }
+                })
+        
     }
 }
