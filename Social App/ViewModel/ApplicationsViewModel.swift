@@ -41,8 +41,9 @@ class ApplicationsViewModel : ObservableObject{
                     let applicationMessage = document.data()["applicationMessage"] as! String
                     let postID = document.data()["postId"] as! String
                     let applicantPhoto = document.data()["applicantPhoto"] as! String
+                    let positionApplied = document.data()["positionApplied"] as! String
                     
-                    self.IncomingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicantUserName: applicantUserName, applicationMessage: applicationMessage, postID: postID, applicantPhoto: applicantPhoto))
+                    self.IncomingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicantUserName: applicantUserName, applicationMessage: applicationMessage, postID: postID, applicantPhoto: applicantPhoto, positionApplied: positionApplied))
                     
                     print("Success")
                     
@@ -77,8 +78,9 @@ class ApplicationsViewModel : ObservableObject{
                     let applicationMessage = document.data()["applicationMessage"] as! String
                     let postID = document.data()["postId"] as! String
                     let applicantPhoto = document.data()["applicantPhoto"] as! String
+                    let positionApplied = document.data()["positionApplied"] as! String
                     
-                    self.OutgoingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicantUserName: applicantUserName, applicationMessage: applicationMessage, postID: postID, applicantPhoto: applicantPhoto))
+                    self.OutgoingApplications.append(ApplicationModel(id: document.documentID, applicantID: applicantID, recipientID: recepientID, applicantUserName: applicantUserName, applicationMessage: applicationMessage, postID: postID, applicantPhoto: applicantPhoto, positionApplied: positionApplied))
            
                 }
             

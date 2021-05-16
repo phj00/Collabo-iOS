@@ -74,6 +74,13 @@ class ApplyViewModel : ObservableObject{
             }
         }
         
+        self.getPositionApplied(postId: postId) {
+            (property) in
+            if let property = property {
+                ref.collection("Applications").document(applicationUid).setData(["positionApplied": property], merge: true)
+            }
+        }
+        
 //        self.setApplicationMessage(message: "")
         
     }
@@ -145,6 +152,19 @@ class ApplyViewModel : ObservableObject{
                 completion(nil)
             }
             
+        }
+    }
+    
+    func getPositionApplied(postId: String, completion: @escaping (String?) -> Void) {
+
+        ref.collection("Postings").document(postId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let property = document.get("title") as! String
+                completion(property)
+            } else {
+                print("Document does not exist.")
+                completion(nil)
+            }
         }
     }
     

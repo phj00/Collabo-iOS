@@ -15,4 +15,5 @@ struct ApplicationModel : Identifiable {
     var applicationMessage: String
     var postID: String
     var applicantPhoto: String
+    var positionApplied: String
 }
